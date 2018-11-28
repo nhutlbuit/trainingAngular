@@ -1,0 +1,33 @@
+.title{
+  color:black;
+  font-weight: bold;
+}
+
+.container{
+  background:white; 
+/*  box-sizing: unset !important; 
+  overflow: hidden !important;  */
+}
+
+.content{
+  background-color:white;
+}
+
+.mat-dialog-container {
+  background:mediumturquoise !important;
+}
+
+
+
+button:hover{
+  border-color: blue !important;
+}
+
+button:active {
+  border-color: blue !important;
+}
+
+mat-form-field {
+  width: 90%
+}
+

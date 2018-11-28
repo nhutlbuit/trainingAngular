@@ -1,0 +1,57 @@
+<div class="main-container">
+  <mat-card style="width: 95%;">
+    <mat-card-title>Scope Dashboard</mat-card-title>
+    <mat-card-content>
+
+      <mat-table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+          <mat-cell *matCellDef="let scope"> {{scope.id}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="scopeValue">
+          <mat-header-cell *matHeaderCellDef> Scope Value </mat-header-cell>
+          <mat-cell *matCellDef="let scope"> 
+            <span *ngIf="!scope.isEditable">{{scope.scopeValue}}</span>
+            <mat-form-field *ngIf="scope.isEditable">
+                <input matInput [(ngModel)]="scope.scopeValue" [formControl]="scopeValue" required>
+                <mat-error *ngIf="scopeValue.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+            <!-- <input matInput [(ngModel)]="scope.scopeValue" *ngIf="scope.isEditable" required> -->
+          </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef class="action">
+            <button mat-icon-button color="primary" (click)="addNew()" *ngIf="!isAddNew">
+              <mat-icon aria-label="Add">add</mat-icon>
+            </button>
+          </mat-header-cell>
+
+          <mat-cell *matCellDef="let row; let i=index;" class="action">
+            <!-- <button mat-icon-button color="accent" (click)="startEdit(i,row)">
+              <mat-icon aria-label="Edit">edit</mat-icon>
+            </button> -->
+            <button  mat-icon-button color="accent" (click)="row.isEditable=!row.isEditable"
+             *ngIf="!row.isEditable" >
+                <mat-icon aria-label="Edit">edit</mat-icon>
+            </button>
+            <button mat-icon-button color="accent" (click)="deleteScope(row.id)" *ngIf="!row.isEditable">
+                <mat-icon aria-label="Delete">delete</mat-icon>
+              </button>
+            <button mat-raised-button color="primary" [disabled]="scopeValue.invalid" *ngIf="row.isEditable" (click)="saveData(row)">Save</button>
+            <button mat-raised-button *ngIf="row.isEditable" (click)="cancelAction(row)">Cancel</button>
+
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <mat-paginator [length]="5" [pageSize]="5" [pageSizeOptions]="[5, 10, 25]">
+      </mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</div>

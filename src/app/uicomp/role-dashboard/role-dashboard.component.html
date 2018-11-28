@@ -1,0 +1,57 @@
+<div class="container">
+  <mat-card>
+    <mat-card-title style="font-weight: bold;">Role Dashboard
+      <!-- <button mat-mini-fab type="button" color="primary" matTooltip="Create new role">
+        <mat-icon aria-label="create">person_add</mat-icon>
+      </button> -->
+    </mat-card-title>
+    <!-- <div fxLayout="row" style="display: flex; justify-content: flex-end">
+      <mat-form-field>
+        <input matInput placeholder="Search" [(ngModel)]="roleName">
+      </mat-form-field>
+      <button mat-icon-button class="search" (click)="searchByRoleName()">
+        <mat-icon aria-label="search role">search</mat-icon>
+      </button>
+    </div> -->
+    <mat-card-content>
+      <mat-table #table [dataSource]="dataSource">
+        <ng-container matColumnDef="position">
+          <mat-header-cell *matHeaderCellDef>No.</mat-header-cell>
+          <mat-cell *matCellDef="let role; let i = index"> {{i + 1}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef>
+            <label>Name</label>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let role"> {{role.roleName}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="description">
+          <mat-header-cell *matHeaderCellDef>
+            <label>Description</label>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let role"> {{role.description}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef>
+            <label>Status</label>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let role">
+            <mat-slide-toggle [(ngModel)]="role.isActive" (change)="onChange($event, role)" (click)="changeStatus(role); false"></mat-slide-toggle>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let role">
+            <button mat-icon-button matTooltip="Edit role" (click)="editRole(role)">
+              <mat-icon aria-label="edit">edit</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let role; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</div>

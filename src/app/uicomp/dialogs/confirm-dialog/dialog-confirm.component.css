@@ -1,0 +1,42 @@
+.title{
+    color:black;
+    font-weight: bold;
+}
+
+.container{
+    background:white; 
+  /*  box-sizing: unset !important; 
+    overflow: hidden !important;  */
+}
+
+.content{
+    background-color:white;
+}
+
+.mat-dialog-container {
+    background:mediumturquoise !important;
+}
+
+.containerbtn{
+    align-content: center;
+    width: 60%;
+    left: auto;
+    margin: auto;
+    margin-top: 10px;
+ }
+
+.close{
+    align-items: right;
+    background-color: white !important;
+    opacity: .5 !important;
+    border: none !important;
+}
+
+button:hover{
+    border-color: blue !important;
+}
+
+button:active {
+    border-color: blue !important;
+}
+

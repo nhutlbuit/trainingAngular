@@ -1,0 +1,22 @@
+<div class="container">
+  <!--  <div class="close">
+        <button mat-dialog-close >
+            <mat-icon class ="md-24">close</mat-icon>
+        </button>
+    </div>
+-->
+    <div class="title">
+        <h2 mat-dialog-title>{{dialog.title}}</h2>
+    </div>
+
+    <div class="content">
+        <mat-dialog-content>{{dialog.content}}</mat-dialog-content>
+        <mat-dialog-actions>
+            <div class="containerbtn">
+                <button mat-raised-button color="" [mat-dialog-close]="true">Yes</button>
+                <button mat-raised-button color="" mat-dialog-close >No</button>
+            </div>
+        </mat-dialog-actions>
+    </div>
+
+</div>

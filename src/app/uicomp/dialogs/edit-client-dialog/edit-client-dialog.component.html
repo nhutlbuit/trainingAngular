@@ -1,0 +1,92 @@
+<div class="container">
+    <h3 mat-dialog-title>Edit Client App</h3>
+
+    <div class="content">
+        <form [formGroup]="editFromGroup" (ngSubmit)="submit" name="">
+            <mat-dialog-content>
+
+                <mat-grid-list cols="2" rowHeight="4:1">
+                    <mat-grid-tile>
+                        <mat-form-field color="accent">
+                            <input matInput formControlName="id" class="form-control" placeholder="UUID" [(ngModel)]="data.id" name="id" required>
+                            <mat-error *ngIf="!editFromGroup.controls['id'].errors">This field is required!</mat-error>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field color="accent">
+                            <input matInput formControlName="clientSecrets" class="form-control" placeholder="Client Secrets" [(ngModel)]="data.clientSecrets"
+                                name="clientSecrets" required>
+                            <mat-error *ngIf="!editFromGroup.controls['clientSecrets'].errors">This field is required!</mat-error>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                </mat-grid-list>
+
+
+                <mat-grid-list cols="2" rowHeight="4:1">
+                    <mat-grid-tile>
+                        <mat-form-field color="accent">
+                            <input matInput formControlName="clientName" class="form-control" placeholder="Name" [(ngModel)]="data.clientName" name="clientName"
+                                required>
+                            <mat-error *ngIf="!editFromGroup.controls['clientName'].errors">This field is required!</mat-error>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field color="accent">
+                            <input matInput formControlName="redirectUrl" placeholder="Redirect Url" [(ngModel)]="data.redirectUrl" name="redirectUrl"
+                                required>
+                            <mat-error *ngIf="!editFromGroup.controls['redirectUrl'].errors">This field is required!</mat-error>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                </mat-grid-list>
+
+
+                <mat-grid-list cols="2" rowHeight="4:1">
+                    <mat-grid-tile>
+                        <mat-form-field color="accent">
+                            <!-- <input matInput formControlName="resourceIds" placeholder="ResourceIds" [(ngModel)]="data.resourceIds" name="resourceIds"
+                                required> -->
+                            <mat-chip-list #chipResourceIdList>
+                                <mat-chip *ngFor="let resourceId of resourceIds" [selectable]="selectable" [removable]="removable" (remove)="removeChipResourceIds(resourceId)">
+                                    {{resourceId.name}}
+                                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                </mat-chip>
+                                <input placeholder="ResourceIds..." [matChipInputFor]="chipResourceIdList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                    [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="addChipResourceIds($event)" />
+                            </mat-chip-list>
+                            <mat-error *ngIf="!editFromGroup.controls['resourceIds'].errors">This field is required!</mat-error>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field color="accent">
+                            <!-- <input matInput formControlName="grantTypes" placeholder="Grant Types" [(ngModel)]="data.grantTypes" name="grantTypes" required> -->
+                            <mat-chip-list #chipList>
+                                <mat-chip *ngFor="let grantType of grantTypes" [selectable]="selectable" [removable]="removable" (remove)="removeChipGrantTypes(grantType)">
+                                    {{grantType.name}}
+                                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                </mat-chip>
+                                <input placeholder="Grant Types..." [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                                    (matChipInputTokenEnd)="addChipGrantTypes($event)" />
+                            </mat-chip-list>
+                            <mat-error *ngIf="!editFromGroup.controls['grantTypes'].errors">This field is required!</mat-error>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                </mat-grid-list>
+                <mat-grid-list cols="2" rowHeight="4:1">
+                    <mat-grid-tile>
+                        <mat-form-field>
+                            <mat-select placeholder="Scopes" formControlName="scopes" [(ngModel)]="data.scopes" multiple [compareWith]="compareFn" >
+                                <mat-option *ngFor="let scope of scopeList" [value]="scope">{{scope.scopeValue}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </mat-grid-tile>
+                </mat-grid-list>
+
+            </mat-dialog-content>
+            <mat-dialog-actions align="end">
+                <button mat-raised-button color="primary" [type]="submit" [mat-dialog-close]="1" (click)="confirmUpdate()">Save</button>
+                <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">Cancel</button>
+            </mat-dialog-actions>
+        </form>
+    </div>
+</div>

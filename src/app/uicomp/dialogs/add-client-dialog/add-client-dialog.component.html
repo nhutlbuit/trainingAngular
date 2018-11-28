@@ -1,0 +1,69 @@
+<div class="container">
+    <h3 mat-dialog-title>Add New Client App</h3>
+
+    <div class="content">
+        <form [formGroup]="addFromGroup" (ngSubmit)="submit" name="">
+            <mat-dialog-content>
+                
+                <mat-grid-list cols="3" rowHeight="4:1">
+                    <mat-grid-tile colspan="2">
+                        <mat-form-field color="accent">
+                            <input matInput formControlName="clientName" class="form-control" placeholder="Name" [(ngModel)]="data.clientName" name="clientName"
+                                required>
+                            <mat-error *ngIf="!addFromGroup.controls['clientName'].errors">This field is required!</mat-error>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile colspan="1">
+                        <mat-form-field color="accent">
+                            <input matInput formControlName="redirectUrl" placeholder="Redirect Url" [(ngModel)]="data.redirectUrl" name="redirectUrl"
+                                required>
+                            <mat-error *ngIf="!addFromGroup.controls['redirectUrl'].errors">This field is required!</mat-error>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                </mat-grid-list>
+
+
+                <mat-grid-list cols="2" rowHeight="4:1">
+                    <mat-grid-tile>
+                        <mat-form-field>
+                            <mat-chip-list #chipResourceIdList>
+                                <mat-chip *ngFor="let resourceId of resourceIds" [selectable]="selectable" [removable]="removable" (remove)="removeChipResourceIds(resourceId)">
+                                    {{resourceId.name}}
+                                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                </mat-chip>
+                                <input placeholder="ResourceIds..." [matChipInputFor]="chipResourceIdList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                    [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="addChipResourceIds($event)" />
+                            </mat-chip-list>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field>
+                            <mat-chip-list #chipList>
+                                <mat-chip *ngFor="let grantType of grantTypes" [selectable]="selectable" [removable]="removable" (remove)="removeChipGrantTypes(grantType)">
+                                    {{grantType.name}}
+                                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                </mat-chip>
+                                <input placeholder="Grant Types..." [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                                    (matChipInputTokenEnd)="addChipGrantTypes($event)" />
+                            </mat-chip-list>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                </mat-grid-list>
+                <mat-grid-list cols="2" rowHeight="4:1">
+                    <mat-grid-tile>
+                        <mat-form-field>
+                            <mat-select placeholder="Scopes" formControlName="scopes" [(ngModel)]="data.scopes" multiple>
+                                <mat-option *ngFor="let scope of scopeList" [value]="scope">{{scope.scopeValue}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                </mat-grid-list>
+
+            </mat-dialog-content>
+            <mat-dialog-actions align="end">
+                <button mat-raised-button color="primary" [type]="submit" [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
+                <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">Cancel</button>
+            </mat-dialog-actions>
+        </form>
+    </div>
+</div>

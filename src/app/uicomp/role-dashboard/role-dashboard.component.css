@@ -1,0 +1,45 @@
+.container {
+  margin-top: 1%;
+  margin-bottom: 5%;
+}
+
+.mat-card {
+  width: 75%;
+}
+
+.mat-header-cell {
+  font-weight: bold;
+  font-size: large;
+  text-decoration: underline;
+}
+
+.search {
+  /* width: 5%;
+  height: 5%; */
+  background-color: white;
+}
+
+.mat-icon-button {
+  /* width: 10%;
+  height: 10%; */
+}
+
+.mat-icon {
+  size: 110%;
+}
+
+.mat-column-position {
+  flex: 0 0 10%;
+}
+
+.mat-column-status {
+  flex: 0 0 12%;
+}
+
+.mat-column-action {
+  flex: 1 0 0;
+}
+
+.mat-row:hover {
+  background-color: blanchedalmond;
+}

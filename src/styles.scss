@@ -1,0 +1,15 @@
+@import '~material-design-icons/iconfont/material-icons.css';
+
+html, body, mat-sidenav-container {
+    height: 100%;
+    margin: 0%;
+}
+
+mat-sidenav-content {
+    margin-top: 50px;
+}
+
+mat-sidenav-content mat-card{
+    margin: auto;
+    // padding-top: 70px !important;
+}
