@@ -29,7 +29,8 @@ export class AddUserDialogComponent implements OnInit {
     { value: 0, viewValue: 'DB' },
     { value: 1, viewValue: 'LDAP' }
   ];
-
+  minDate: Date;
+  maxDate: Date;
   form: FormGroup;
   passwordFormGroup: FormGroup;
 
@@ -64,11 +65,14 @@ export class AddUserDialogComponent implements OnInit {
       firstName: [''],
       lastName: [''],
       dob: [''],
+      testDate: [''],
       address: ['']
     });
     this.roleService.findAll().subscribe(data => {
       this.roles = data._embedded.slRoles;
     });
+    this.minDate = new Date('11/28/2018');
+    this.maxDate = new Date('11/30/2018');
   }
 
   submit() {
