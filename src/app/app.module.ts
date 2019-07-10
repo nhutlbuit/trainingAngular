@@ -66,6 +66,8 @@ import { Constants } from './shared/constants';
 import { FunctionGuard } from './guards/function-guard';
 import { AdminGuard } from './guards/admin';
 import { RoleDashboardComponent } from './uicomp/role-dashboard/role-dashboard.component';
+import { SwitchmapComponent } from './rxjs/switchmap/switchmap.component';
+import { AddStudentDialogComponent } from './rxjs/dialogs/add-student-dialog/add-student-dialog.component';
 @NgModule({
   exports: [
     MatAutocompleteModule,
@@ -133,7 +135,9 @@ const SERVICES_PROVIDER = [
     AddUserDialogComponent,
     EditUserDialogComponent,
     ChangeStatusDialogComponent,
-    RoleDashboardComponent
+    RoleDashboardComponent,
+    SwitchmapComponent,
+    AddStudentDialogComponent
   ],
   imports: [
     MaterialModule,
@@ -152,7 +156,8 @@ const SERVICES_PROVIDER = [
     DialogConfirmComponent,
     AddUserDialogComponent,
     EditUserDialogComponent,
-    ChangeStatusDialogComponent
+    ChangeStatusDialogComponent,
+    AddStudentDialogComponent
   ],
   providers: [
     Constants,

@@ -24,14 +24,14 @@ import { NoopInterceptor } from './service/noop-Interceptor.service';
 export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   static inactive = true;
 
-  @ViewChild(MatSidenav)
+  @ViewChild(MatSidenav, { read: false, static: false })
   private matSideNav: MatSidenav;
 
   timeOfRefresh = false;
   isExpired = false;
   checkRefreshTokenThread;
   private baseAccountURL: string;
-  private authUrl: string
+  private authUrl: string;
 
   constructor(
     private uiService: UIService,
@@ -78,7 +78,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       } else if (state === 'deny') {
         this.authStore.setIsLoggedIntoStorage('true');
       } else {
-        ///this.authService.logout();
+        // this.authService.logout();
         this.goToAuthServer()
       }
     }

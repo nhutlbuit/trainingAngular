@@ -1,0 +1,49 @@
+.title{
+  color:black;
+  font-weight: bold;
+}
+
+.container{
+  background:white; 
+/*  box-sizing: unset !important; 
+  overflow: hidden !important;  */
+}
+
+.content{
+  background-color:white;
+}
+
+.mat-dialog-container {
+  background:mediumturquoise !important;
+}
+
+
+
+button:hover{
+  border-color: blue !important;
+}
+
+button:active {
+  border-color: blue !important;
+}
+
+mat-form-field {
+  width: 90%
+}
+
+.btn {
+  font-weight: bold;
+  background-color: #ffb74d;
+  color: white;
+  margin: 10px;
+}
+
+.btn-save {
+  background-color: green;
+}
+
+.btn-cancel {
+  background-color: lightgray;
+  color: initial;
+}
+

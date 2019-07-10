@@ -25,7 +25,7 @@ export class ClientAppComponent implements OnInit, AfterViewInit {
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   /////////////////////////////////////
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { read: false, static: true }) paginator: MatPaginator;
 
   dialogContainer: DialogModel; // dialog
 

@@ -1,6 +1,6 @@
 echo off
-title Building agentProfileApi-18.2.1.1.war file...
+title Building AngularTraining file...
 color 2
-ng build --prod --env=prod  && ^
+npm run build --prod --env=prod  && ^
 echo Done && ^
 pause

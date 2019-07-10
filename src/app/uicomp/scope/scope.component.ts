@@ -22,8 +22,8 @@ export class ScopeComponent implements OnInit, AfterViewInit {
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   /////////////////////////////////////
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, { read: false, static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { read: false, static: true }) sort: MatSort;
   dialogContainer: DialogModel; // dialog
 
   isAddNew = false;
