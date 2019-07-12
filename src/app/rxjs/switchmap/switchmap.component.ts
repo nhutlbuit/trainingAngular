@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatSnackBar, MatPaginator, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { AddStudentDialogComponent } from '../dialogs/add-student-dialog/add-student-dialog.component';
@@ -7,7 +7,7 @@ import { RxjsService } from '../service/rxjs.service';
 import { DialogModel } from '../../uicomp/dialogs/dialog-model/dialog-model';
 import { DialogConfirmComponent } from '../../uicomp/dialogs/confirm-dialog/dialog-confirm.component';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-switchmap',
@@ -15,7 +15,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./switchmap.component.css'],
   providers: [ RxjsService]
 })
-export class SwitchmapComponent implements OnInit, AfterViewInit {
+export class SwitchmapComponent implements OnInit {
 
   searchField: FormControl;
   searchUserName$ = new BehaviorSubject('');
@@ -27,41 +27,30 @@ export class SwitchmapComponent implements OnInit, AfterViewInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
-  constructor(public rxjsService: RxjsService,
-    public dialog: MatDialog,
-    public snackBar: MatSnackBar,
-    private modalService: NgbModal) { }
+  constructor(public rxjsService: RxjsService, public dialog: MatDialog, public snackBar: MatSnackBar) {
+
+  }
 
   ngOnInit() {
-    this.search();
-    this.getData();
+    this.searchAutocomplete();
+    this.paginator.pageIndex = 0;
+    this.paginator.pageSize = 5;
+    this.paginate();
+    this.paginator.page.pipe(tap(() => this.paginate())).subscribe();
   }
 
-  ngAfterViewInit() {
-  }
-
-  search() {
+  searchAutocomplete() {
     this.rxjsService.filterUserNames(this.searchUserName$).subscribe(res => {
       this.filteredData = res._embedded.students;
     });
   }
 
-  viewName(dt: any): string {
-    return dt.lastName + ' ' + dt.middleName + ' ' + dt.firstName;
-  }
-
   resetFilter() {
     this.searchByName = '';
-    this.getData();
+    this.paginate();
   }
 
-  getData() {
-    this.paginator.pageIndex = 0;
-    this.paginator.pageSize = 5;
-    this.paginer();
-  }
-
-  paginer() {
+  paginate() {
     this.rxjsService.findByUserNameContaining(this.searchByName, this.paginator.pageIndex, this.paginator.pageSize).subscribe(res => {
       this.dataSource = res['_embedded'].students;
       this.paginator.length = res['page'].totalElements;
@@ -87,7 +76,7 @@ export class SwitchmapComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.paginer();
+        this.paginate();
       }
     });
   }
@@ -106,7 +95,7 @@ export class SwitchmapComponent implements OnInit, AfterViewInit {
       if (result) {
         this.rxjsService.deleteStudent(item).subscribe(_ => {
           this.openSnackBar(`Deleted student ${item.fullName} successfully`, '');
-          this.paginer();
+          this.paginate();
           this.searchUserName$.next('');
         }, _ => alert('Deleted has error. Please contact admin!'));
       }

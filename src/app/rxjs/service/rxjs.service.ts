@@ -21,7 +21,12 @@ export class RxjsService {
   }
 
   filterUserNames(keys: Subject<any>): Observable<any> {
-    return keys.pipe(debounceTime(400), distinctUntilChanged(), switchMap(key => this.findByUserNameContaining(key, 0, 10)));
+    return keys.pipe(debounceTime(400), distinctUntilChanged(), switchMap(key => this.findStudentNameOnlyByUserNameContaining(key, 0, 10)));
+  }
+
+  findStudentNameOnlyByUserNameContaining(name: string, page: number, size: number) {
+    const url = this.ROOT_URL + `students/search/likeName?name=${name}&page=${page}&size=${size}&projection=InlineStudentNameOnly`;
+    return this.httpClient.get(url);
   }
 
   findByUserNameContaining(name: string, page: number, size: number) {

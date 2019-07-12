@@ -6,14 +6,14 @@
       <br>
 
       <input matInput (input)="searchUserName$.next($event.target.value)" class="form-control"
-        placeholder="Enter name" [(ngModel)]="searchByName" [matAutocomplete]="autoFilterUserName" (keydown.enter)="getData()" >
-      <mat-autocomplete #autoFilterUserName="matAutocomplete" (optionSelected)="search()">
-        <mat-option *ngFor="let dt of filteredData" [value]="viewName(dt)">
-            {{viewName(dt)}}
+        placeholder="Enter name" [(ngModel)]="searchByName" [matAutocomplete]="autoFilterUserName" (keydown.enter)="paginate()" >
+      <mat-autocomplete #autoFilterUserName="matAutocomplete" (optionSelected)="searchAutocomplete()">
+        <mat-option *ngFor="let dt of filteredData" [value]="dt.fullName">
+            {{dt.fullName}}
         </mat-option>
       </mat-autocomplete>
 
-      <button mat-icon-button class="add-team-type-btn" (click)="getData()">
+      <button mat-icon-button class="add-team-type-btn" (click)="paginate()">
           <mat-icon class="add-team-type-icon" color="accent">search</mat-icon>
         </button>
         <button mat-icon-button matTooltip="Clear Filter" id="btn_clear_filter" (click)="resetFilter()">
@@ -89,7 +89,7 @@
           [style.background-color]="!row.isActive ? 'none' : '#BDBDBD' "></mat-row>
 
       </mat-table>
-      <mat-paginator [length]="5" [pageSize]="5" [pageSizeOptions]="[5, 10, 25]" (click)="paginer()">
+      <mat-paginator #paginator [length]="5" [pageSize]="5" [pageSizeOptions]="[5, 10, 25]">
       </mat-paginator>
     </mat-card-content>
   </mat-card>
