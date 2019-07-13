@@ -66,6 +66,9 @@ import { Constants } from './shared/constants';
 import { FunctionGuard } from './guards/function-guard';
 import { AdminGuard } from './guards/admin';
 import { RoleDashboardComponent } from './uicomp/role-dashboard/role-dashboard.component';
+import { TestComponent } from './test/test.component';
+import { Test1Component } from './test1/test1.component';
+import { TestDirective } from './test.directive';
 @NgModule({
   exports: [
     MatAutocompleteModule,
@@ -100,7 +103,7 @@ import { RoleDashboardComponent } from './uicomp/role-dashboard/role-dashboard.c
     MatToolbarModule,
     MatTooltipModule
   ],
-  declarations: []
+  declarations: [TestComponent, Test1Component, TestDirective]
 })
 export class MaterialModule {}
 

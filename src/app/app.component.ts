@@ -31,7 +31,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   isExpired = false;
   checkRefreshTokenThread;
   private baseAccountURL: string;
-  private authUrl: string
+  private authUrl: string;
 
   constructor(
     private uiService: UIService,

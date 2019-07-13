@@ -19,6 +19,7 @@ export class AddClientDialogComponent implements OnInit {
   isActive = 1;
   scopeList: Scope[];
 
+
   // config for chips
   visible = true;
   selectable = true;
@@ -154,5 +155,7 @@ export class AddClientDialogComponent implements OnInit {
       this.resourceIds.splice(index, 1);
     }
   }
+
+  
 
 }

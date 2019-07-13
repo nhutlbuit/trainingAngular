@@ -23,6 +23,7 @@ export class UserDashboardComponent implements OnInit, AfterViewInit {
   userName: string;
   userStatus: number;
   loading = false;
+  public sum: number;
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
@@ -179,4 +180,8 @@ export class UserDashboardComponent implements OnInit, AfterViewInit {
       this.userStatus = 0;
     }
   }
+
+
+
 }
+

@@ -15,8 +15,8 @@
   <div [formGroup]="passwordFormGroup">
     <div class="form-group">
       <mat-form-field>
-        <input matInput placeholder="Password" [type]="hide ? 'text': 'password'" [(ngModel)]="userDto.user.password" formControlName="password"
-          type="password" required>
+        <input matInput placeholder="Password" [type]="hide ? 'text': 'password'" [(ngModel)]="userDto.user.password" 
+        formControlName="password" type="password" required>
         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off': 'visibility'}}</mat-icon>
         <mat-error>
           <ng-template [ngIf]="passwordFormGroup.controls.password?.errors?.required">
@@ -43,7 +43,7 @@
     <mat-form-field>
       <mat-select placeholder="Select role(s)" [(ngModel)]="userDto.roles" formControlName="roles" multiple required>
         <mat-option *ngFor="let role of roles" [value]="role">
-          {{role.description}}
+          {{role.roleCode}} - {{role.roleName}}
         </mat-option>
       </mat-select>
       <mat-error>
@@ -105,4 +105,7 @@
 <mat-dialog-actions>
   <button class="mat-raised-button" (click)="close()">Close</button>
   <button class="mat-raised-button mat-primary" [disabled]="form.invalid" (click)="submit()">Submit</button>
+  <button class="mat-raised-button" (click)="caculate()">xxx</button>
 </mat-dialog-actions>
+
+
