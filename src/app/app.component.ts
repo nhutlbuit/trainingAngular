@@ -79,7 +79,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         this.authStore.setIsLoggedIntoStorage('true');
       } else {
         // this.authService.logout();
-        this.goToAuthServer()
+        this.goToAuthServer();
       }
     }
   }
