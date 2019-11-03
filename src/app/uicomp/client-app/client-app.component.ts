@@ -7,6 +7,7 @@ import { AddClientDialogComponent } from '../dialogs/add-client-dialog/add-clien
 import { DialogConfirmComponent } from '../dialogs/confirm-dialog/dialog-confirm.component';
 import { DialogModel } from '../dialogs/dialog-model/dialog-model';
 import { EditClientDialogComponent } from '../dialogs/edit-client-dialog/edit-client-dialog.component';
+import { UserService } from '../../service/user.service';
 
 @Component({
   selector: 'app-client-app',
@@ -28,10 +29,12 @@ export class ClientAppComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   dialogContainer: DialogModel; // dialog
+  isAction: boolean;
 
   constructor(public clientAppService: ClientAppService,
     public dialog: MatDialog,
-    public snackBar: MatSnackBar) { }
+    public snackBar: MatSnackBar,
+    private userService: UserService) { }
 
   ngOnInit() {
     this.clientAppService.changeEventHandle$
@@ -139,6 +142,11 @@ export class ClientAppComponent implements OnInit, AfterViewInit {
         }
       }
     );
+  }
+
+  isActAction() {
+    this.isAction = !this.isAction;
+    this.userService.isAct.next(this.isAction);
   }
 
 }

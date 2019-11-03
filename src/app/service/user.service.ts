@@ -7,6 +7,7 @@ import { User } from '../model/user';
 import { UserInfo } from '../model/user-info';
 import { Role } from '../model/role';
 import { UIService } from './uiservice.service';
+import { Subject } from 'rxjs';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -17,6 +18,7 @@ export class UserService {
   private ROOT_URL;
 
   dialogData: any;
+  isAct = new Subject<boolean>();
 
   constructor(private httpClient: HttpClient, private uIService: UIService) {
     this.ROOT_URL = this.uIService.baseAccountURL;
