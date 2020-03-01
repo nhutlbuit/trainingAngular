@@ -19,7 +19,7 @@ export class RoleDashboardComponent implements OnInit {
   displayedColumns = ['position', 'name', 'description', 'status', 'action'];
   dataSource = new MatTableDataSource();
 
-  @ViewChild(MatPaginator, { read: false, static: true })
+  @ViewChild(MatPaginator)
   paginator: MatPaginator;
 
   roleName: string;

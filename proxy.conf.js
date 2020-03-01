@@ -11,16 +11,16 @@ const PROXY_CONFIG = [
   },
   {
     context: [
-      "/member-market",
+      "/abc",
     ],
-    target: "http://saqat.beatus88.net:8080",
+    target: "http://localhost.net:8080",
     secure: false,
     changeOrigin: true,
     ws: true,
     logLevel: "debug",
-    headers: {host: 'saqat.beatus88.com'},
+    headers: {host: 'abc.com'},
     cookieDomainRewrite: {
-      ".beatus88.com": ".beatus88.net"
+      ".abc.com": ".abc.net"
     }
   }
 ];

@@ -24,7 +24,7 @@ export class UserDashboardComponent implements OnInit, AfterViewInit {
   userStatus: number;
   loading = false;
 
-  @ViewChild(MatPaginator, { read: false, static: true })
+  @ViewChild(MatPaginator)
   paginator: MatPaginator;
 
   constructor(

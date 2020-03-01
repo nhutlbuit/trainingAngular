@@ -24,7 +24,7 @@ import { NoopInterceptor } from './service/noop-Interceptor.service';
 export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   static inactive = true;
 
-  @ViewChild(MatSidenav, { read: false, static: false })
+  @ViewChild(MatSidenav)
   private matSideNav: MatSidenav;
 
   timeOfRefresh = false;

@@ -22,7 +22,7 @@ export class SwitchmapComponent implements OnInit {
   dataSource: any;
   filteredData: any;
   searchByName = '';
-  @ViewChild(MatPaginator, { read: false, static: true }) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { read: false }) paginator: MatPaginator;
   displayedColumns = ['studentCode', 'name', 'class', 'dob', 'phone', 'address', 'actions'];
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';

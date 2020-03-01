@@ -40,7 +40,7 @@ export class RxjsService {
   }
 
   createdStudent(student: any) {
-    const url = this.ROOT_URL + '/students';
+    const url = this.ROOT_URL + 'students';
     return this.httpClient.post(url, student);
   }
 
