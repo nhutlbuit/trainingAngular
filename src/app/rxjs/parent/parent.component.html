@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="boder navbar col-12">
+      <h2>Comunication between 2 components</h2>
+    </div>
+  </div>
+  <div class="body row">
+    <div class="boder main col-9">
+      <h3>Parent component</h3>
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Message</mat-label>
+          <mat-icon matSuffix>fingerprint</mat-icon>
+          <input matInput placeholder="Enter value" [(ngModel)]="inputA" name="inputA" autofocus type="text">
+        </mat-form-field>
+        <button style="margin-left: 15px;" mat-raised-button color="blue" (click)="clearMessage()">Clear</button>
+        <p>Message from child: <span style="color: red;"> {{messageFromChild}}</span></p>
+      </div>
+    </div>
+    <div class="boder right col-3">
+      <h3>Child component</h3>
+      <app-child [childMessage]="inputA" (messageEvent)="receiveMessage($event)"></app-child>
+    </div>
+  </div>
+</div>
+
+
+<!-- https://material.io/resources/icons/?icon=fingerprint&style=baseline -->

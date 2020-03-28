@@ -6,6 +6,8 @@ import { UserDashboardComponent } from './uicomp/user-dashboard/user-dashboard.c
 import { RoleDashboardComponent } from './uicomp/role-dashboard/role-dashboard.component';
 import { AdminGuard } from './guards/admin';
 import { SwitchmapComponent } from './rxjs/switchmap/switchmap.component';
+import { ParentComponent } from './rxjs/parent/parent.component';
+import { ChildComponent } from './rxjs/child/child.component';
 
 const routes: Routes = [
   {
@@ -38,6 +40,11 @@ const routes: Routes = [
     component: SwitchmapComponent,
     canActivate: []
   },
+  {
+    path: 'parent',
+    component: ParentComponent,
+    canActivate: []
+  }
 ];
 
 @NgModule({

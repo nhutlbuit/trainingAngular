@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { UIService } from '../../service/uiservice.service';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class RxjsService {
 
   private ROOT_URL;

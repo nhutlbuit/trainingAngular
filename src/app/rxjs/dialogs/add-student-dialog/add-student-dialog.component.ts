@@ -18,7 +18,7 @@ export const MY_DATE_FORMATS = {
   selector: 'app-add-student-dialog',
   templateUrl: './add-student-dialog.component.html',
   styleUrls: ['./add-student-dialog.component.css'],
-  providers: [RxjsService,
+  providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'vi' },
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS }]

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatDialog, MatSnackBar, MatPaginator, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { AddStudentDialogComponent } from '../dialogs/add-student-dialog/add-student-dialog.component';
@@ -12,17 +12,16 @@ import { tap } from 'rxjs/operators';
 @Component({
   selector: 'app-switchmap',
   templateUrl: './switchmap.component.html',
-  styleUrls: ['./switchmap.component.css'],
-  providers: [ RxjsService]
+  styleUrls: ['./switchmap.component.css']
 })
-export class SwitchmapComponent implements OnInit {
+export class SwitchmapComponent implements OnInit, AfterViewInit {
 
   searchField: FormControl;
   searchUserName$ = new BehaviorSubject('');
   dataSource: any;
   filteredData: any;
   searchByName = '';
-  @ViewChild(MatPaginator, { read: false }) paginator: MatPaginator;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   displayedColumns = ['studentCode', 'name', 'class', 'dob', 'phone', 'address', 'actions'];
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
@@ -32,6 +31,14 @@ export class SwitchmapComponent implements OnInit {
   }
 
   ngOnInit() {
+
+  }
+
+  ngAfterViewInit() {
+    this.initData();
+  }
+
+  initData() {
     this.searchAutocomplete();
     this.paginator.pageIndex = 0;
     this.paginator.pageSize = 5;
@@ -84,7 +91,7 @@ export class SwitchmapComponent implements OnInit {
   deleteDialog(item: any) {
     const dialogContainer = new DialogModel();
     dialogContainer.title = 'Confirm Message';
-    dialogContainer.content = `Are you sure delete student ${item.fullName}?`;
+    dialogContainer.content = `Are you sure delete student <b>${item.fullName}</b>?`;
     const dialogRef = this.dialog.open(DialogConfirmComponent, {
       height: '200px',
       width: '420px',
@@ -97,7 +104,7 @@ export class SwitchmapComponent implements OnInit {
           this.openSnackBar(`Deleted student ${item.fullName} successfully`, '');
           this.paginate();
           this.searchUserName$.next('');
-        }, _ => alert('Deleted has error. Please contact admin!'));
+        }, _ => alert('Deleted the student has error. Please contact admin!'));
       }
     }, error => {
       console.log(error);
