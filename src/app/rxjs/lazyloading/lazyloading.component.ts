@@ -1,6 +1,8 @@
 import { Component, OnInit, AfterViewInit, NgModule, Type, ComponentFactoryResolver, ViewContainerRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../shared/share.module';
+import { RouterModule } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-lazyloading',
@@ -42,13 +44,13 @@ export class LazyLoadingComponent implements OnInit, AfterViewInit {
 
 }
 
-const modules = [
-  CommonModule
-];
-
 @NgModule({
-  imports: [...modules],
-  exports: [...modules],
+  imports: [CommonModule, MatButtonModule, RouterModule.forChild([
+    {
+      path: '',
+      component: LazyLoadingComponent
+    }
+  ])],
   declarations: [LazyLoadingComponent]
 })
 export class LazyModule { }

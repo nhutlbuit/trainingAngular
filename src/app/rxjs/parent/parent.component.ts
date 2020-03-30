@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { ChildComponent } from '../child/child.component';
 import { MatButtonModule, MatInputModule, MatIconModule, MatFormFieldModule, MatRippleModule } from '@angular/material';
 import { CommonModule } from '@angular/common';
+import { Routes, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-parent',
@@ -56,8 +57,13 @@ const modules = [
   MatRippleModule
 ];
 
+const routes: Routes = [
+  {
+    path: '',
+    component: ParentComponent
+  }];
 @NgModule({
-  imports: [...modules],
+  imports: [...modules, RouterModule.forChild(routes)],
   exports: [...modules, ParentComponent],
   declarations: [ParentComponent, ChildComponent],
 })
@@ -66,4 +72,6 @@ export class ParentModule {
     lazy: ParentComponent,
   };
 }
+
+
 

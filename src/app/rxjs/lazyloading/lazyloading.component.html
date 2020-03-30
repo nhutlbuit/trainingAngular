@@ -1,13 +1,13 @@
-<button (click)="loadLazy()">Load1</button>
+<button class="margin-left" mat-raised-button (click)="loadLazy()">Load1</button>
 <div *ngIf="loaded">
     <ng-container *ngComponentOutlet="myComponent"></ng-container>
 </div>
 
 
-<button (click)="loadComponent()">Load2</button>
+<button class="margin-left" mat-raised-button (click)="loadComponent()">Load2</button>
 <ng-container #anchor></ng-container>
 
-<button (click)="loadLazyParantComponent()">Load3</button>
+<button class="margin-left" mat-raised-button (click)="loadLazyParantComponent()">Load3</button>
 <ng-container *ngIf="parentLazyLoad">
     <ng-template [ngComponentOutlet]="parentLazyLoad | async"></ng-template>
 </ng-container>

@@ -41,14 +41,12 @@ const routes: Routes = [
   },
   {
     path: 'parent',
-    // component: ParentComponent,
     loadChildren: () => import('app/rxjs/parent/parent.component').then(m => m.ParentModule),
     canActivate: []
   },
   {
     path: 'lazyloading',
-    component: LazyLoadingComponent,
-    // loadChildren: () => import('app/rxjs/lazyloading/lazyloading.component').then(m => m.LazyModule),
+     loadChildren: () => import('app/rxjs/lazyloading/lazyloading.component').then(m => m.LazyModule),
     canActivate: []
   }
 
