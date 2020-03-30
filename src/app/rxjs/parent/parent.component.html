@@ -10,12 +10,9 @@
       <div>
         <mat-form-field appearance="fill">
           <mat-label>Message</mat-label>
-          <mat-icon matSuffix>fingerprint</mat-icon>
+          <mat-icon matSuffix (click)="clearMessage()" style="cursor: pointer; color: red">clear</mat-icon>
           <input matInput placeholder="Enter value" [(ngModel)]="inputA" name="inputA" autofocus type="text">
         </mat-form-field>
-        <button style="margin-left: 15px;" mat-icon-button color="warn" (click)="clearMessage()">
-          <mat-icon aria-label="clear">clear</mat-icon>
-        </button>
         <p>Message from child: <span style="color: red;"> {{messageFromChild}}</span></p>
       </div>
       <button style="margin-left: 15px;" mat-raised-button color="blue" (click)="doSomething()">update</button>

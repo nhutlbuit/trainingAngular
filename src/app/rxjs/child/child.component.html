@@ -1,7 +1,7 @@
 <div>
   <mat-form-field appearance="fill">
     <mat-label>Message</mat-label>
-    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    <mat-icon matSuffix style="cursor: pointer; color: red" (click)="clearMessage()">clear</mat-icon>
     <input matInput pplaceholder="Enter value" [(ngModel)]="inputB" name="inputB">
   </mat-form-field>
   <button mat-raised-button color="blue" (click)="sendMessage()">Send</button>

@@ -1,7 +1,7 @@
-import { Component, OnInit, AfterViewInit, NgModule, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, NgModule, ElementRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ChildComponent } from '../child/child.component';
-import { MatButtonModule, MatInputModule, MatIconModule, MatFormFieldModule, MatRippleModule, MatInput } from '@angular/material';
+import { MatButtonModule, MatInputModule, MatIconModule, MatFormFieldModule, MatRippleModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
@@ -26,7 +26,7 @@ export class ParentComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-   // this.exceptionTest = 'bb';
+    // this.exceptionTest = 'bb';
     /* RROR Error: ExpressionChangedAfterItHasBeenCheckedError:
     Expression has changed after it was checked. Previous value: 'aa'. Current value: 'bb'. */
   }
@@ -40,25 +40,30 @@ export class ParentComponent implements OnInit, AfterViewInit {
   }
 
   doSomething() {
-    this.title = this.inputA ?? 'xxxx';
+    this.title = this.inputA ?? 'title undentify';
     return this.exceptionTest?.endsWith('a');
   }
 
 }
+
 const modules = [
+  BrowserModule,
   FormsModule,
   MatButtonModule,
   MatInputModule,
   MatIconModule,
-  BrowserModule,
   MatFormFieldModule,
   MatRippleModule
 ];
 
 @NgModule({
-  declarations: [ParentComponent, ChildComponent],
   imports: [...modules],
-  exports: [...modules]
+  exports: [...modules, ParentComponent],
+  declarations: [ParentComponent, ChildComponent],
 })
-class ParentModule { }
+export class ParentModule {
+  static components = {
+    lazy: ParentComponent,
+  };
+}
 

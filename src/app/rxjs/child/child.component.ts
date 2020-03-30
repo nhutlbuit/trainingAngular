@@ -24,10 +24,13 @@ export class ChildComponent implements OnInit, AfterViewInit {
 
   }
 
+  clearMessage() {
+    this.inputB = '';
+  }
+
   sendMessage() {
     this.messageEvent.emit(this.inputB);
   }
-
 
 }
 

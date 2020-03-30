@@ -68,7 +68,6 @@ import { AdminGuard } from './guards/admin';
 import { RoleDashboardComponent } from './uicomp/role-dashboard/role-dashboard.component';
 import { SwitchmapComponent } from './rxjs/switchmap/switchmap.component';
 import { AddStudentDialogComponent } from './rxjs/dialogs/add-student-dialog/add-student-dialog.component';
-import { ChildComponent } from './rxjs/child/child.component';
 @NgModule({
   exports: [
     MatAutocompleteModule,

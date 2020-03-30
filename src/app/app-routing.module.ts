@@ -4,10 +4,9 @@ import { ClientAppComponent } from './uicomp/client-app/client-app.component';
 import { ScopeComponent } from './uicomp/scope/scope.component';
 import { UserDashboardComponent } from './uicomp/user-dashboard/user-dashboard.component';
 import { RoleDashboardComponent } from './uicomp/role-dashboard/role-dashboard.component';
-import { AdminGuard } from './guards/admin';
 import { SwitchmapComponent } from './rxjs/switchmap/switchmap.component';
 import { ParentComponent } from './rxjs/parent/parent.component';
-import { ChildComponent } from './rxjs/child/child.component';
+import { LazyLoadingComponent } from './rxjs/lazyloading/lazyloading.component';
 
 const routes: Routes = [
   {
@@ -40,11 +39,19 @@ const routes: Routes = [
     component: SwitchmapComponent,
     canActivate: []
   },
+  // {
+  //   path: 'parent',
+  //   component: ParentComponent,
+  //  // loadChildren: () => import('app/rxjs/parent/parent.component').then(m => m.ParentModule),
+  //   canActivate: []
+  // },
   {
-    path: 'parent',
-    component: ParentComponent,
+    path: 'lazyloading',
+    component: LazyLoadingComponent,
+   // loadChildren: () => import('app/rxjs/lazyloading/lazyloading.component').then(m => m.lazyModule),
     canActivate: []
   }
+  
 ];
 
 @NgModule({

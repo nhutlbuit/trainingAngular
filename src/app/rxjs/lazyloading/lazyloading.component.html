@@ -1,0 +1,8 @@
+<button (click)="loadLazy()">Load1</button>
+<div *ngIf="loaded">
+    <ng-container *ngComponentOutlet="myComponent"></ng-container>
+</div>
+
+
+<button (click)="loadComponent()">Load2</button>
+<ng-container #anchor></ng-container>
