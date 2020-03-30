@@ -12,6 +12,7 @@ export class LazyLoadingComponent implements OnInit, AfterViewInit {
   myComponent?: Type<any>;
   loaded = false;
   @ViewChild('anchor', { read: ViewContainerRef }) anchor: ViewContainerRef;
+  parentLazyLoad?: Promise<Type<any>>;
   constructor(private factoryResolver: ComponentFactoryResolver) {}
 
   ngOnInit() {}
@@ -21,10 +22,16 @@ export class LazyLoadingComponent implements OnInit, AfterViewInit {
   loadLazy() {
     import('../parent/parent.component')
     .then(mod => mod.ParentModule)
-    .then(lazyModule => {
-        this.myComponent = lazyModule.components['lazy'];
+    .then(lazyModuleLoading => {
+        this.myComponent = lazyModuleLoading.components['lazy'];
         this.loaded = true;
     });
+  }
+
+  loadLazyParantComponent() {
+    if (!this.parentLazyLoad) {
+      this.parentLazyLoad = import('../parent/parent.component').then(({ParentComponent}) => ParentComponent);
+    }
   }
 
   async loadComponent() {
@@ -42,7 +49,7 @@ const modules = [
 @NgModule({
   imports: [...modules],
   exports: [...modules],
-  declarations: [LazyLoadingComponent],
+  declarations: [LazyLoadingComponent]
 })
-export class lazyModule { }
+export class LazyModule { }
 

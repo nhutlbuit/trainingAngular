@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit, NgModule, ElementRef } from '@angular
 import { FormsModule } from '@angular/forms';
 import { ChildComponent } from '../child/child.component';
 import { MatButtonModule, MatInputModule, MatIconModule, MatFormFieldModule, MatRippleModule } from '@angular/material';
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-parent',
@@ -47,7 +47,7 @@ export class ParentComponent implements OnInit, AfterViewInit {
 }
 
 const modules = [
-  BrowserModule,
+  CommonModule,
   FormsModule,
   MatButtonModule,
   MatInputModule,
