@@ -13,6 +13,10 @@ export class ParentComponent implements OnInit, AfterViewInit {
 
   inputA: any;
   messageFromChild: string;
+  exceptionTest = 'aa';
+  title: string | null;
+  fontSize: number;
+  color: string;
   constructor(private el: ElementRef) {
 
   }
@@ -22,7 +26,9 @@ export class ParentComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-
+   // this.exceptionTest = 'bb';
+    /* RROR Error: ExpressionChangedAfterItHasBeenCheckedError:
+    Expression has changed after it was checked. Previous value: 'aa'. Current value: 'bb'. */
   }
 
   receiveMessage($event) {
@@ -31,6 +37,11 @@ export class ParentComponent implements OnInit, AfterViewInit {
 
   clearMessage() {
     this.inputA = '';
+  }
+
+  doSomething() {
+    this.title = this.inputA ?? 'xxxx';
+    return this.exceptionTest?.endsWith('a');
   }
 
 }

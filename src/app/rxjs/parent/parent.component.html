@@ -13,9 +13,22 @@
           <mat-icon matSuffix>fingerprint</mat-icon>
           <input matInput placeholder="Enter value" [(ngModel)]="inputA" name="inputA" autofocus type="text">
         </mat-form-field>
-        <button style="margin-left: 15px;" mat-raised-button color="blue" (click)="clearMessage()">Clear</button>
+        <button style="margin-left: 15px;" mat-icon-button color="warn" (click)="clearMessage()">
+          <mat-icon aria-label="clear">clear</mat-icon>
+        </button>
         <p>Message from child: <span style="color: red;"> {{messageFromChild}}</span></p>
       </div>
+      <button style="margin-left: 15px;" mat-raised-button color="blue" (click)="doSomething()">update</button>
+
+      <p>----------------------------------exception test---------------------</p>
+      <span>{{exceptionTest}}</span>
+      {{title}}
+
+      <p>----------------------------------style variable---------------------</p>
+      <input matInput placeholder="Enter font size" [(ngModel)]="fontSize" name="fontSize" type="number">
+      <span [style.font-size]="fontSize+'pt'"> Test font size</span>
+      <input matInput placeholder="Enter color" [(ngModel)]="color" name="color" type="text">
+      <p [style.color]="color"> Test color</p>
     </div>
     <div class="boder right col-3">
       <h3>Child component</h3>
