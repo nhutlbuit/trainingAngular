@@ -3,7 +3,7 @@ import { Component, OnInit, AfterViewInit, Input, Output, EventEmitter } from '@
 @Component({
   selector: 'app-child',
   templateUrl: './child.component.html',
-  styleUrls: ['./child.component.css']
+  styleUrls: ['./child.component.scss']
 })
 export class ChildComponent implements OnInit, AfterViewInit {
 

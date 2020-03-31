@@ -1,9 +1,7 @@
 import { Component, OnInit, AfterViewInit, NgModule, Type, ComponentFactoryResolver, ViewContainerRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '../../shared/share.module';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
-
 @Component({
   selector: 'app-lazyloading',
   templateUrl: './lazyloading.component.html',
@@ -32,13 +30,14 @@ export class LazyLoadingComponent implements OnInit, AfterViewInit {
 
   loadLazyParantComponent() {
     if (!this.parentLazyLoad) {
-      this.parentLazyLoad = import('../parent/parent.component').then(({ParentComponent}) => ParentComponent);
+      this.parentLazyLoad = import('../card/card.component').then(({CardComponent}) => CardComponent);
     }
   }
 
   async loadComponent() {
-    const { ParentComponent } = await import('../parent/parent.component');
-    const factory = this.factoryResolver.resolveComponentFactory(ParentComponent);
+    const { CardComponent } = await import('../card/card.component');
+    const factory = this.factoryResolver.resolveComponentFactory(CardComponent);
+    this.anchor.clear();
     this.anchor.createComponent(factory);
   }
 
