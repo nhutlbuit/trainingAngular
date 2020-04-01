@@ -2,6 +2,8 @@ import { Component, OnInit, AfterViewInit, NgModule, Type, ComponentFactoryResol
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+import { TranslateModule } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-lazyloading',
   templateUrl: './lazyloading.component.html',
@@ -12,25 +14,25 @@ export class LazyLoadingComponent implements OnInit, AfterViewInit {
   myComponent?: Type<any>;
   loaded = false;
   @ViewChild('anchor', { read: ViewContainerRef }) anchor: ViewContainerRef;
-  parentLazyLoad?: Promise<Type<any>>;
-  constructor(private factoryResolver: ComponentFactoryResolver) {}
+  cardLazyLoad?: Promise<Type<any>>;
+  constructor(private factoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) {}
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  ngAfterViewInit() {}
+  ngAfterViewInit() { }
 
   loadLazy() {
     import('../parent/parent.component')
-    .then(mod => mod.ParentModule)
-    .then(lazyModuleLoading => {
+      .then(mod => mod.ParentModule)
+      .then(lazyModuleLoading => {
         this.myComponent = lazyModuleLoading.components['lazy'];
         this.loaded = true;
-    });
+      });
   }
 
-  loadLazyParantComponent() {
-    if (!this.parentLazyLoad) {
-      this.parentLazyLoad = import('../card/card.component').then(({CardComponent}) => CardComponent);
+  loadCardComponent() {
+    if (!this.cardLazyLoad) {
+      this.cardLazyLoad = import('../card/card.component').then(({ CardComponent }) => CardComponent);
     }
   }
 
@@ -39,18 +41,30 @@ export class LazyLoadingComponent implements OnInit, AfterViewInit {
     const factory = this.factoryResolver.resolveComponentFactory(CardComponent);
     this.anchor.clear();
     this.anchor.createComponent(factory);
+
+  }
+
+  loadCardComponent1() {
+    import('../card/card.component').then(({ CardComponent }) => {
+      const factory = this.factoryResolver.resolveComponentFactory(CardComponent);
+      this.anchor.clear();
+      this.anchor.createComponent(factory);
+    });
   }
 
 }
 
 @NgModule({
-  imports: [CommonModule, MatButtonModule, RouterModule.forChild([
-    {
-      path: '',
-      component: LazyLoadingComponent
-    }
-  ])],
+  imports: [CommonModule,
+    MatButtonModule,
+    TranslateModule.forChild(),
+    RouterModule.forChild([
+      {
+        path: '',
+        component: LazyLoadingComponent
+      }
+    ])
+  ],
   declarations: [LazyLoadingComponent]
 })
-export class LazyModule { }
-
+export class LazyModule {}

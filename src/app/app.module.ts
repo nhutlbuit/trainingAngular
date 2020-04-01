@@ -39,7 +39,7 @@ import {
 } from '@angular/material';
 
 import { AuthenticationService } from './service/authentication.service';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { AuthStore } from './stores/auth.store';
 import { AppRoutingModule } from './app-routing.module';
 import { SlToolbarComponent } from './uicomp/sl-toolbar/sl-toolbar.component';
@@ -68,6 +68,9 @@ import { AdminGuard } from './guards/admin';
 import { RoleDashboardComponent } from './uicomp/role-dashboard/role-dashboard.component';
 import { SwitchmapComponent } from './rxjs/switchmap/switchmap.component';
 import { AddStudentDialogComponent } from './rxjs/dialogs/add-student-dialog/add-student-dialog.component';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { createTranslateLoader } from '../config/translate';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 @NgModule({
   exports: [
     MatAutocompleteModule,
@@ -147,7 +150,14 @@ const SERVICES_PROVIDER = [
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
-    MatCardModule
+    MatCardModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient],
+      },
+    }),
   ],
   entryComponents: [
     AddClientDialogComponent,
@@ -173,3 +183,8 @@ const SERVICES_PROVIDER = [
   bootstrap: [AppComponent]
 })
 export class AppModule {}
+
+// required for AOT compilation
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

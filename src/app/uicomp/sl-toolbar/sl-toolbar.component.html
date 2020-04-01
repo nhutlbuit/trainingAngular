@@ -18,6 +18,13 @@
       <label>{{username}}</label>
     </div>
 
+    <div td-toolbar-content layout="row" layout-align="start center" flex>
+			<span flex></span>
+			<mat-select placeholder="Language" flex (selectionChange)="translate.use($event.value)">
+				<mat-option *ngFor="let lang of translate.getLangs()" [value]="lang">{{ lang }}</mat-option>
+			</mat-select>
+		</div>
+
     <div *ngIf="isLoggedIn$" class="logout-button">
       <mat-icon class="md-36" matTooltip="Logout" (click)="onLogout()">exit_to_app</mat-icon>
     </div>

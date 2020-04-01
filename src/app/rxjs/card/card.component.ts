@@ -61,13 +61,24 @@ export class CardComponent {
   }
 }
 
-// https://medium.com/@tejozarkar/angular-stagger-animation-cards-cascading-fe45eb003759
-
-
 @NgModule({
   imports: [CommonModule, MatButtonModule],
   declarations: [CardComponent],
 })
-export class ParentModule {
+export class CardModule {
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+// https://medium.com/@tejozarkar/angular-stagger-animation-cards-cascading-fe45eb003759
