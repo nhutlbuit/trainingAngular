@@ -1,0 +1,49 @@
+<div class="main-container">
+    <mat-card style="width: 95%;">
+        <mat-card-title>Type Script 3.7</mat-card-title>
+        <mat-card-content>
+            <div>
+                <button mat-raised-button (click)="optionalChaining()">Optional Chaining</button>
+                <div *ngIf="isOptionalChaining" class="optional-chaining">
+                    <h3>Optional Chaining</h3>
+                    <button mat-raised-button (click)="InitOptionalChainingVar()" class="assign-value">Assign value: 'ABC'</button>
+                    <p class="title">Before: </p>
+                    <p>this.isOCvariable = this.oCvariable !== null && this.oCvariable !== undefined ? this.oCvariable : 'oCvariable is not initial';</p>
+                    <p>Result: {{isOCvariable}}</p>
+                    <span class="title">After: </span>
+                    <p>this.isOCvariableIvy = this.oCvariable ?? 'oCvariable is not initial';
+                    </p>
+                    <p>Result: {{isOCvariableIvy}}</p>
+                </div>
+            </div>
+            <br>
+            <div>
+                <button class="margin-left" mat-raised-button (click)="nullishCoalescing()">Nullish Coalescing</button>
+                <div *ngIf="isNullishCoalescing" class="optional-chaining">
+                    <h3>Nullish Coalescing</h3>
+                    <button mat-raised-button (click)="InitNullishCoalescingVar()" class="assign-value">Assign value: 'ABC'</button>
+                    <p class="title">Before: </p>
+                    <p>this.isNullCl = this.foo === null || this.foo === undefined ? undefined : this.foo.bar.baz;</p>
+                    <p>Result: {{isNullCl}}</p>
+                    <span class="title">After: </span>
+                    <p>this.isNullClIvy = this.foo?.bar?.baz;
+                    </p>
+                    <p>Result: {{isNullClIvy}}</p>
+                </div>
+            </div>
+            <br>
+            <div>
+                <button mat-raised-button >Assertion Functions</button>
+            </div>
+            <br>
+            <div>
+                <button mat-raised-button >Recursive type aliases</button>
+            </div>
+            <br>
+            <div>
+                <button mat-raised-button >Top-level await</button>
+            </div>
+            initData: {{initData}}
+        </mat-card-content>
+    </mat-card>
+</div>

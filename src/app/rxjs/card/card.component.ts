@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
 import { trigger, style, transition, animate, keyframes, query, stagger } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material';
@@ -48,6 +48,8 @@ import { MatButtonModule } from '@angular/material';
   ]
 })
 export class CardComponent {
+
+  message: string;
 
   index = 3;
   cards = ['Card 1', 'Card 2', 'Card 3'];
