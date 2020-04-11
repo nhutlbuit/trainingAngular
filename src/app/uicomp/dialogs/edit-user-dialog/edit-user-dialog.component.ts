@@ -22,7 +22,7 @@ import 'rxjs/add/observable/forkJoin';
 export class EditUserDialogComponent implements OnInit, AfterViewInit {
   form: FormGroup;
   userDto = new UserDto();
-  roles: Role[];
+  roles = [];
   authenModes = [
     { value: 0, viewValue: 'DB' },
     { value: 1, viewValue: 'LDAP' }
@@ -42,7 +42,7 @@ export class EditUserDialogComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     // init roles list
-  //  this.initRoleList();
+    this.initRoleList();
     // get assigned roles
    // this.getAssignedRoles();
     // load user data
@@ -55,7 +55,7 @@ export class EditUserDialogComponent implements OnInit, AfterViewInit {
     // this.dob = new Date(this.data.dob);
     this.form = this.formBuilder.group({
       roles: [],
-     // authenMode: [this.authenModes[this.data.fullName].value],
+      authenMode: [],
       userInfo: new FormGroup({
         firstName: new FormControl(this.data.firstName),
         lastName: new FormControl(this.data.lastName),
@@ -70,7 +70,7 @@ export class EditUserDialogComponent implements OnInit, AfterViewInit {
   initRoleList() {
     this.roles = [];
     this.roleService.findAll().subscribe(data => {
-      this.roles = data._embedded.slRoles;
+      this.roles = data;
     });
   }
 

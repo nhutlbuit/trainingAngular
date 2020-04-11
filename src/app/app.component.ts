@@ -14,6 +14,8 @@ import { AuthStore } from './stores/auth.store';
 import { Constants } from './shared/constants';
 import { Common } from './shared/common';
 import { NoopInterceptor } from './service/noop-Interceptor.service';
+import * as moment from 'moment';
+import 'moment-timezone';
 
 @Component({
   selector: 'app-root',
@@ -32,6 +34,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   checkRefreshTokenThread;
   private baseAccountURL: string;
   private authUrl: string;
+  public dateTime = moment();
 
   constructor(
     private uiService: UIService,
@@ -78,7 +81,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       } else if (state === 'deny') {
         this.authStore.setIsLoggedIntoStorage('true');
       } else {
-        // this.authService.logout();
+        /// this.authService.logout();
         this.goToAuthServer();
       }
     }

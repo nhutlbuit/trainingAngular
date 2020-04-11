@@ -13,13 +13,13 @@ export class RoleService {
   }
 
   getAll(page: number, size: number): Observable<any> {
-    return this.httpClient.get<any>(
-      this.ROOT_URL + '/slRoles' + '?page=' + page + '&size=' + size
-    );
+    const url = 'http://5bed92d27839000013e6f9c7.mockapi.io/api/role';
+    return this.httpClient.get<any>(url);
   }
 
   findAll(): Observable<any> {
-    return this.httpClient.get<any>(this.ROOT_URL + '/slRoles');
+    const url = 'http://5bed92d27839000013e6f9c7.mockapi.io/api/role';
+    return this.httpClient.get<any>(url);
   }
 
   getByRoleName(roleName: string): Observable<any> {

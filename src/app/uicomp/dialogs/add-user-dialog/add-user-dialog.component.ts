@@ -14,6 +14,8 @@ import {
   ConfirmValidParentMatcher,
   errorMessages
 } from '../../../util/confirm-validator';
+import {map, catchError} from 'rxjs/operators';
+import { from } from 'rxjs/internal/observable/from';
 
 @Component({
   selector: 'app-add-user-dialog',
@@ -23,7 +25,7 @@ import {
 })
 export class AddUserDialogComponent implements OnInit {
   userDto = new UserDto();
-  roles: Role[] = [];
+  roles = [];
   hide: any;
   authenModes = [
     { value: 0, viewValue: 'DB' },
@@ -33,7 +35,7 @@ export class AddUserDialogComponent implements OnInit {
   maxDate: Date;
   form: FormGroup;
   passwordFormGroup: FormGroup;
-
+public sum: number;
   confirmValidParentMatcher = new ConfirmValidParentMatcher();
   errors = errorMessages;
 
@@ -69,7 +71,17 @@ export class AddUserDialogComponent implements OnInit {
       address: ['']
     });
     this.roleService.findAll().subscribe(data => {
-      this.roles = data._embedded.slRoles;
+      this.roles = [];
+      data.forEach(element => {
+        if (element.isActive) {
+           this.roles.push(element);
+        }
+      });
+    //  const source = from([data]);
+    //  this.roles.push(source.pipe(map(e => {
+    //    if (e.isAtive) {
+    //      return e;
+    //     }})));
     });
     this.minDate = new Date('11/28/2018');
     this.maxDate = new Date('11/30/2018');
@@ -95,6 +107,15 @@ export class AddUserDialogComponent implements OnInit {
   close() {
     this.dialogRef.close();
   }
+  caculate() {
+    let start = 1;
+    const end = 3;
+    this.sum = 1;
+   for (start; start <= end; start++) {
+     this.sum = this.sum * start;
+   }
+   alert(this.sum);
+ }
 
   comparePassword() { }
 }

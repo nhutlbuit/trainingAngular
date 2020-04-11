@@ -73,4 +73,42 @@
     </mat-nav-list>
 
   </mat-expansion-panel>
+  
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        System Admin
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-nav-list>
+      <mat-list-item routerLink="/client-app">
+        <button mat-icon-button>
+          <mat-icon color="accent">home</mat-icon>
+        </button>
+        <span>Client App</span>
+      </mat-list-item>
+
+      <mat-list-item routerLink="/scope">
+        <button mat-icon-button>
+          <mat-icon color="accent">home</mat-icon>
+        </button>
+        <span>Scope</span>
+      </mat-list-item>
+
+      <mat-list-item routerLink="/users">
+        <button mat-icon-button>
+          <mat-icon color="accent">people</mat-icon>
+        </button>
+        <span>User Management</span>
+      </mat-list-item>
+
+      <mat-list-item routerLink="/roles">
+        <button mat-icon-button>
+          <mat-icon color="accent">person_outline</mat-icon>
+        </button>
+        <span>Role Management</span>
+      </mat-list-item>
+    </mat-nav-list>
+
+  </mat-expansion-panel>
 </mat-accordion>

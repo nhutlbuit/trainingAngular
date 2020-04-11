@@ -4,8 +4,8 @@
     <mat-form-field>
       <mat-select placeholder="Select role(s)" value="userDto.roles" formControlName="roles" [compareWith]="compareRole" multiple
         required>
-        <mat-option *ngFor="let role of roles" [value]="role">
-          {{role.description}}
+        <mat-option *ngFor="let role of roles" [value]="role.roleCode">
+          {{role.roleCode}} - {{role.roleName}}
         </mat-option>
       </mat-select>
       <mat-error>

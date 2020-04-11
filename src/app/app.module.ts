@@ -105,7 +105,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     MatToolbarModule,
     MatTooltipModule
   ],
-  declarations: []
+  declarations: [TestComponent, Test1Component, TestDirective]
 })
 export class MaterialModule {}
 

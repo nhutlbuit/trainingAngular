@@ -25,8 +25,8 @@ export class AuthenticationService {
     private router: Router
   ) {
 
-    //this.OAUTH2_SERVICE_PATH = Constants.OAUTH2_PATH;
-    //this.LOG_OUT_AUTH2_URL = this.OAUTH2_SERVICE_PATH +
+    // this.OAUTH2_SERVICE_PATH = Constants.OAUTH2_PATH;
+    // this.LOG_OUT_AUTH2_URL = this.OAUTH2_SERVICE_PATH +
     //  '/logout-oauth2?client_id=' +
     //  Constants.CLIENT_ID;
   }

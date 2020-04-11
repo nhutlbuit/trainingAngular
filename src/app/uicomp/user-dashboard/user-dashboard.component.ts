@@ -11,6 +11,7 @@ import { EventService } from '../../service/event.service';
 import { tap } from 'rxjs/operators/tap';
 import { EditUserDialogComponent } from '../dialogs/edit-user-dialog/edit-user-dialog.component';
 import { ChangeStatusDialogComponent } from '../dialogs/change-status-dialog/change-status-dialog.component';
+import { UIService } from '../../service/uiservice.service';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -23,15 +24,30 @@ export class UserDashboardComponent implements OnInit, AfterViewInit {
   userName: string;
   userStatus: number;
   loading = false;
+  public sum: number;
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
+  isAction: boolean;
+  isTest = false;
+  isTestBehaviorSubject: boolean;
+  isTestEventEmiiter: boolean;
 
   constructor(
     public dialog: MatDialog,
     private eventService: EventService,
-    private userService: UserService
-  ) {}
+    private userService: UserService,
+    private uiService: UIService
+  ) {
+    this.uiService.navBarEventSource.subscribe(a => {
+      this.isAction = a;
+    });
+    this.uiService.isTestBehaviorSubject.subscribe(a => this.isTestBehaviorSubject = a);
+    this.isTest = this.uiService.isTest;
+    this.uiService.isTestEventEmiiter.subscribe(x => {
+      this.isTestEventEmiiter = x;
+    });
+  }
 
   ngOnInit() {
     this.paginator.pageSize = 5;
@@ -179,4 +195,8 @@ export class UserDashboardComponent implements OnInit, AfterViewInit {
       this.userStatus = 0;
     }
   }
+
+
+
 }
+
