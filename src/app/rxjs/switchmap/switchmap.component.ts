@@ -17,6 +17,8 @@ import { tap } from 'rxjs/operators';
 export class SwitchmapComponent implements OnInit, AfterViewInit {
 
   searchField: FormControl;
+  searchObject = {name: '', pageIndex: 0, pageSize: 10};
+  searchByObject$ = new BehaviorSubject(this.searchObject);
   searchUserName$ = new BehaviorSubject('');
   dataSource: any;
   filteredData: any;
@@ -40,6 +42,7 @@ export class SwitchmapComponent implements OnInit, AfterViewInit {
 
   initData() {
     this.searchAutocomplete();
+    this.searchByObjectFunction();
     this.paginator.pageIndex = 0;
     this.paginator.pageSize = 5;
     this.paginate();
@@ -50,6 +53,17 @@ export class SwitchmapComponent implements OnInit, AfterViewInit {
     this.rxjsService.filterUserNames(this.searchUserName$).subscribe(res => {
       this.filteredData = res._embedded.students;
     });
+  }
+
+  searchByObjectFunction() {
+    this.rxjsService.filterUserNames1(this.searchByObject$).subscribe(res => {
+      alert(res._embedded.students?.[0].fullName);
+    });
+  }
+
+  searchObjectChangeName() {
+    this.searchObject.name = this.searchByName;
+    this.searchByObject$.next(this.searchObject);
   }
 
   resetFilter() {

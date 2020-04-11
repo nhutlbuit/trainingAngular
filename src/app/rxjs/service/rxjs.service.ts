@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap, exhaustMap } from 'rxjs/operators';
 import { UIService } from '../../service/uiservice.service';
 
 @Injectable({providedIn: 'root'})
@@ -22,6 +22,11 @@ export class RxjsService {
 
   filterUserNames(keys: Subject<any>): Observable<any> {
     return keys.pipe(debounceTime(400), distinctUntilChanged(), switchMap(key => this.findStudentNameOnlyByUserNameContaining(key, 0, 10)));
+  }
+
+  filterUserNames1(keys: Subject<any>): Observable<any> {
+    return keys.pipe(debounceTime(100),
+    exhaustMap(key => this.findStudentNameOnlyByUserNameContaining(key.name, key.pageIndex, key.pageSize)));
   }
 
   findStudentNameOnlyByUserNameContaining(name: string, page: number, size: number) {

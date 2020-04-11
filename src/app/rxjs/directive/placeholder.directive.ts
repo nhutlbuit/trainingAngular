@@ -10,7 +10,7 @@ export class PlaceholderDirective implements OnChanges {
   appPlaceholder: Type<any>;
   @Input()
   initData: any;
-  private component: any;
+  private component: InstanceType<any>;
 
   constructor(public viewContainer: ViewContainerRef,
               private componentFactoryResolver: ComponentFactoryResolver) {

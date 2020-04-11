@@ -41,11 +41,12 @@ export class LazyLoadingComponent implements OnInit, AfterViewInit {
   }
 
   async loadComponent() {
+    // extract property of an object
     const { CardComponent } = await import('../card/card.component');
     const factory = this.factoryResolver.resolveComponentFactory(CardComponent);
     this.anchor.clear();
-    let instance = this.anchor.createComponent(factory).instance;
-    instance.message = 'abcde';
+    const {instance: CardComponentInstance} = this.anchor.createComponent(factory);
+    CardComponentInstance.message = 'abcde';
   }
 
   loadCardComponent1() {
