@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="boder navbar col-12">
+      <h2>Comunication between 2 components</h2>
+    </div>
+  </div>
+  <div class="body row">
+    <div class="boder main col-9">
+      <h3>Parent component</h3>
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Message</mat-label>
+          <mat-icon matSuffix (click)="clearMessage()" style="cursor: pointer; color: red">clear</mat-icon>
+          <input matInput placeholder="Enter value" [(ngModel)]="inputA" name="inputA" autofocus type="text">
+        </mat-form-field>
+        <p>Message from child: <span style="color: red;"> {{messageFromChild}}</span></p>
+      </div>
+      <button style="margin-left: 15px;" mat-raised-button color="blue" (click)="doSomething()">update</button>
+
+      <p>----------------------------------exception test---------------------</p>
+      <span>{{exceptionTest}}</span>
+      {{title}}
+      
+      <p>----------------------------------style variable---------------------</p>
+      <input matInput placeholder="Enter font size" [(ngModel)]="fontSize" name="fontSize" type="number">
+      <span [style.font-size]="fontSize+'pt'"> Test font size</span>
+      <input matInput placeholder="Enter color" [(ngModel)]="color" name="color" type="text">
+      <p [style.color]="color"> Test color</p>
+    </div>
+    <div class="boder right col-3">
+      <h3>Child component</h3>
+      <app-child [childMessage]="inputA" (messageEvent)="receiveMessage($event)"></app-child>
+    </div>
+  </div>
+</div>
+
+
+<!-- https://material.io/resources/icons/?icon=fingerprint&style=baseline -->

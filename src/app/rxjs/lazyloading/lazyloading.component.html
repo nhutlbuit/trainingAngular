@@ -1,0 +1,22 @@
+<div style="width: 95%; padding: 15px 15px 15px 15px;">
+    <button class="margin-left" mat-raised-button (click)="loadLazy()">{{'LOAD1' | translate }}</button>
+    <div *ngIf="loaded">
+        <ng-container *ngComponentOutlet="myComponent"></ng-container>
+    </div>
+
+    <button class="margin-left" mat-raised-button (click)="loadComponent()">{{'LOAD2' | translate }}</button>
+    <ng-container #anchor></ng-container>
+
+    <button class="margin-left" mat-raised-button (click)="loadCardComponent()">{{'LOAD3' | translate }}</button>
+    <ng-container *ngIf="cardLazyLoad">
+        <ng-template [ngComponentOutlet]="cardLazyLoad | async"></ng-template>
+    </ng-container>
+
+    <button class="margin-left" mat-raised-button (click)="loadTypescriptComponent()">Type Script 3.7</button>
+    <ng-container *ngIf="typeScriptLazyLoad">
+        <ng-template [ngComponentOutlet]="typeScriptLazyLoad | async"></ng-template>
+    </ng-container>
+
+    <button class="margin-left" mat-raised-button (click)="loadCardDirective()">Load TypeScriptComponent Via Directive</button>
+    <ng-template [appPlaceholder]="compHolder" [initData]="dataTranfer"></ng-template>
+</div>

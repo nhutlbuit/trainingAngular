@@ -1,0 +1,71 @@
+.mat-cell{
+    flex: 1;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.action{
+    display:flex;
+    justify-content:center;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+  }
+  
+.mat-table {
+    overflow: auto;
+}
+
+.form-control {
+    border: 1px;
+    width: 200px;
+    border-style: outset;
+    height: 25px;
+}
+
+.add-team-type-btn {
+    width: 40px;
+    height: 40px;
+    background-color: inherit;
+    color: green;
+    margin-left: 30px;
+}
+
+.add-team-type-icon {
+    font-size: 35px;
+    line-height: 40px;
+    width: auto;
+    height: auto;
+}
+
+.btn {
+    font-weight: bold;
+    background-color: #ffb74d;
+    color: white;
+    margin: 10px;
+}
+
+.title {
+    color: red;
+    font-weight: bold;
+}
+
+.optional-chaining {
+    border: #ffb74d;
+    border-style: outset;
+    border-width: .5px;
+    padding-left: 10px;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+.assign-value {
+    background-color: yellowgreen;
+    margin-bottom: 10px;
+}

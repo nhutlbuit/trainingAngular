@@ -1,0 +1,96 @@
+<div class="main-container">
+  <mat-card style="width: 95%;">
+    <mat-card-title>SwitchMap</mat-card-title>
+    <mat-card-content>
+      Search criteria:
+      <br>
+
+      <input matInput (input)="searchUserName$.next($event.target.value)" class="form-control"
+        placeholder="Enter name" [(ngModel)]="searchByName" [matAutocomplete]="autoFilterUserName" (keydown.enter)="paginate()" >
+      <mat-autocomplete #autoFilterUserName="matAutocomplete" (optionSelected)="searchAutocomplete()">
+        <mat-option *ngFor="let dt of filteredData" [value]="dt.fullName">
+            {{dt.fullName}}
+        </mat-option>
+      </mat-autocomplete>
+
+      <button mat-icon-button class="add-team-type-btn" (click)="paginate()">
+          <mat-icon class="add-team-type-icon" color="accent">search</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Clear Filter" id="btn_clear_filter" (click)="resetFilter()">
+          <mat-icon color="accent">delete_sweep</mat-icon>
+        </button>
+   
+      <br>
+      <br>
+
+      <mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="studentCode">
+          <mat-header-cell *matHeaderCellDef> Student Code </mat-header-cell>
+          <mat-cell *matCellDef="let dt">
+            {{dt.studentCode}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+          <mat-cell *matCellDef="let dt">
+            {{dt.fullName}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="class">
+          <mat-header-cell *matHeaderCellDef> Class </mat-header-cell>
+          <mat-cell *matCellDef="let dt">
+            {{dt.trainingClass? dt.trainingClass.className : ''}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="dob">
+          <mat-header-cell *matHeaderCellDef> Date Of birth </mat-header-cell>
+          <mat-cell *matCellDef="let dt">
+            {{dt.dateOfBirth | date:'dd/MM/yyyy'}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="phone">
+            <mat-header-cell *matHeaderCellDef> Phone </mat-header-cell>
+            <mat-cell *matCellDef="let dt">
+              {{dt.phoneNumber}}
+            </mat-cell>
+          </ng-container>
+
+        <ng-container matColumnDef="address">
+            <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+            <mat-cell *matCellDef="let dt">
+              {{dt.address}}
+            </mat-cell>
+          </ng-container>
+
+        <!-- actions -->
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef class="action">
+            <button mat-icon-button color="primary" (click)="addNewOrUpdate()">
+              <mat-icon aria-label="Add">add</mat-icon>
+            </button>
+          </mat-header-cell>
+
+          <mat-cell *matCellDef="let row" class="action">
+              <button mat-icon-button color="warn" (click)="deleteDialog(row)">
+                  <mat-icon aria-label="delete">delete</mat-icon>
+                </button>
+            <button mat-icon-button color="accent" (click)="addNewOrUpdate(row)">
+              <mat-icon aria-label="Edit">edit</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"
+          [style.background-color]="!row.isActive ? 'none' : '#BDBDBD' "></mat-row>
+
+      </mat-table>
+      <mat-paginator #paginator [length]="5" [pageSize]="5" [pageSizeOptions]="[5, 10, 25]">
+      </mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UIService } from '../../service/uiservice.service';
-import { Observable } from 'rxjs/Observable';
+import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from '../../service/authentication.service';
 import { AuthStore } from '../../stores/auth.store';
+import { getSelectedLanguage, SUPPORTED_LANGS } from '../../../config/translate';
 
 @Component({
   selector: 'app-sl-toolbar',
@@ -19,7 +20,13 @@ export class SlToolbarComponent implements OnInit {
   constructor(
     private uiService: UIService,
     private authService: AuthenticationService,
-    private authStore: AuthStore) {}
+    private authStore: AuthStore,
+    public translate: TranslateService) {
+      translate.setDefaultLang(SUPPORTED_LANGS[0]);
+      translate.addLangs(SUPPORTED_LANGS);
+      translate.use(getSelectedLanguage(translate));
+      
+    }
 
   emitNavBarEvent(): void {
     this.navBarShow = !this.navBarShow;

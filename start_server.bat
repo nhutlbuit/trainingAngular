@@ -1,1 +1,1 @@
-ng serve --open --port 1234
+npm run start --open --port 1234

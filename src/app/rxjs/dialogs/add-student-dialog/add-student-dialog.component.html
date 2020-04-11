@@ -1,0 +1,92 @@
+<br>
+<div class="container">
+    <h3 mat-dialog-title>{{this.dataFather.student.isAddNew? 'Add New Student' : 'Update Student'}}</h3>
+
+    <div class="content">
+        <form [formGroup]="addFromGroup" name="">
+            <mat-dialog-content>
+
+                <mat-grid-list cols="3" rowHeight="4:1">
+
+                    <mat-grid-tile colspan="1">
+                        <mat-form-field color="accent">
+                            <input matInput formControlName="lastName" placeholder="Last Name"
+                                [(ngModel)]="data.lastName" name="lastName" required class="form-control">
+                            <mat-error *ngIf="!addFromGroup.controls['lastName'].errors">This field is required!
+                            </mat-error>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile colspan="1">
+                        <mat-form-field color="accent">
+                            <input matInput formControlName="middleName" placeholder="Middle Name"
+                                [(ngModel)]="data.middleName" name="middleName" class="form-control">
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile colspan="1">
+                        <mat-form-field color="accent">
+                            <input matInput formControlName="firstName" class="form-control" placeholder="First Name"
+                                [(ngModel)]="data.firstName" name="firstName" required>
+                            <mat-error *ngIf="!addFromGroup.controls['firstName'].errors">This field is required!
+                            </mat-error>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                </mat-grid-list>
+
+                <mat-grid-list cols="2" rowHeight="4:1">
+                    <mat-grid-tile colspan="1">
+                        <mat-form-field color="accent">
+                            <input matInput formControlName="studentCode" class="form-control"
+                                placeholder="Student Code" [(ngModel)]="data.studentCode" name="studentCode" required>
+                            <mat-error *ngIf="!addFromGroup.controls['studentCode'].errors">This field is required!
+                            </mat-error>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile colspan="1">
+                        <mat-form-field color="accent">
+                            <mat-select required formControlName="classCode" required id="classCode"
+                                [(ngModel)]="data.classCode" placeholder="Class Code">
+                                <mat-option *ngFor="let cl of classCodeList" [value]="cl.classCode">
+                                    {{cl.classCode}} - {{cl.className}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                </mat-grid-list>
+
+                <mat-grid-list cols="2" rowHeight="4:1">
+                    <mat-grid-tile colspan="1">
+                        <mat-form-field color="accent">
+                            <input matInput placeholder="Date of Birth" [matDatepicker]="myDatepicker"
+                                [(ngModel)]="data.dateOfBirth" formControlName="dateOfBirth"
+                                [max]="maxDate">
+                            <mat-datepicker-toggle matSuffix [for]="myDatepicker">
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #myDatepicker></mat-datepicker>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile colspan="1">
+                        <mat-form-field color="accent">
+                            <input matInput formControlName="phoneNumber" placeholder="Phone Number"
+                                [(ngModel)]="data.phoneNumber" name="phoneNumber" class="form-control">
+                        </mat-form-field>
+                    </mat-grid-tile>
+                </mat-grid-list>
+
+                <mat-grid-list cols="1" rowHeight="4:1">
+                    <mat-grid-tile colspan="1">
+                        <mat-form-field color="accent">
+                            <input matInput formControlName="address" class="form-control" placeholder="Address"
+                                [(ngModel)]="data.address" name="address" class="form-control">
+                        </mat-form-field>
+                    </mat-grid-tile>
+                </mat-grid-list>
+
+            </mat-dialog-content>
+            <mat-dialog-actions>
+                <button mat-raised-button class="btn btn-save" [mat-dialog-close]="true" [disabled]="addFromGroup.invalid"
+                    (click)="save()">Save</button>
+                <button mat-button class="btn btn-cancel" mat-dialog-close>Cancel</button>
+            </mat-dialog-actions>
+        </form>
+    </div>
+</div>

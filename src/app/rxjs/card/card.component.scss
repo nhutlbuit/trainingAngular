@@ -1,0 +1,53 @@
+.main-wrap{
+    width: 100%;
+    display: flex;
+    padding: 5px;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    .card{
+        width: 150px;
+        height: 170px;
+        background: white;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 10px;
+        margin: 10px 20px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgb(14, 167, 194);
+        .info{
+            color: rgb(255, 255, 255);
+            font-size: 40px;
+        }
+        &.plus-card{
+            cursor: pointer;
+            transition: .5s;
+            background: rgb(5, 221, 70);
+            &:hover{
+                transform: scale(1.03);
+            }
+            .plus{
+                font-size: 100px;
+                color: rgb(255, 255, 255);
+            }
+        }
+        .cross{
+            position: absolute;
+            top:10px;
+            right: 10px;
+            font-size:30px;
+            border: none;
+            background: none;
+            color: rgb(255, 255, 255);
+            transition: .5s;
+            &:focus{
+                outline: none;
+            }
+            &:hover{
+                cursor: pointer;
+                transform: scale(1.2);
+            }
+        }
+    }
+}

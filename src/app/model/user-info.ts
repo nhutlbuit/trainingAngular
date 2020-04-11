@@ -6,5 +6,5 @@ export class UserInfo {
   address: string;
   dob: Date;
   refUserId: number;
-  testDate: any;
+  testDate: Date;
 }

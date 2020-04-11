@@ -6,6 +6,7 @@ import { AppInfo } from '../model/app-info';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
 import { UIService } from './uiservice.service';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 @Injectable()
 export class ClientAppService {
@@ -68,5 +69,14 @@ export class ClientAppService {
       .map(data => {
         this.changeEvent.next('delete');
       });
+  }
+
+  filterUserNames(keys: Subject<any>): Observable<any> {
+    return keys.pipe(debounceTime(400), distinctUntilChanged(), switchMap(key => this.findByUserNameContaining(key, 0, 10)));
+  }
+
+  findByUserNameContaining(name: string, page: number, size: number) {
+    const url = this.ROOT_URL + `students/search/likeName?name=${name}&page=${page}&size=${size}`;
+    return this.httpClient.get(url);
   }
 }

@@ -39,7 +39,7 @@ import {
 } from '@angular/material';
 
 import { AuthenticationService } from './service/authentication.service';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { AuthStore } from './stores/auth.store';
 import { AppRoutingModule } from './app-routing.module';
 import { SlToolbarComponent } from './uicomp/sl-toolbar/sl-toolbar.component';
@@ -66,9 +66,11 @@ import { Constants } from './shared/constants';
 import { FunctionGuard } from './guards/function-guard';
 import { AdminGuard } from './guards/admin';
 import { RoleDashboardComponent } from './uicomp/role-dashboard/role-dashboard.component';
-import { TestComponent } from './test/test.component';
-import { Test1Component } from './test1/test1.component';
-import { TestDirective } from './test.directive';
+import { SwitchmapComponent } from './rxjs/switchmap/switchmap.component';
+import { AddStudentDialogComponent } from './rxjs/dialogs/add-student-dialog/add-student-dialog.component';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { createTranslateLoader } from '../config/translate';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 @NgModule({
   exports: [
     MatAutocompleteModule,
@@ -136,7 +138,9 @@ const SERVICES_PROVIDER = [
     AddUserDialogComponent,
     EditUserDialogComponent,
     ChangeStatusDialogComponent,
-    RoleDashboardComponent
+    RoleDashboardComponent,
+    SwitchmapComponent,
+    AddStudentDialogComponent
   ],
   imports: [
     MaterialModule,
@@ -146,7 +150,14 @@ const SERVICES_PROVIDER = [
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
-    MatCardModule
+    MatCardModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient],
+      },
+    }),
   ],
   entryComponents: [
     AddClientDialogComponent,
@@ -155,7 +166,8 @@ const SERVICES_PROVIDER = [
     DialogConfirmComponent,
     AddUserDialogComponent,
     EditUserDialogComponent,
-    ChangeStatusDialogComponent
+    ChangeStatusDialogComponent,
+    AddStudentDialogComponent
   ],
   providers: [
     Constants,
@@ -171,3 +183,8 @@ const SERVICES_PROVIDER = [
   bootstrap: [AppComponent]
 })
 export class AppModule {}
+
+// required for AOT compilation
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
