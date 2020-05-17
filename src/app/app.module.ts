@@ -159,16 +159,17 @@ const SERVICES_PROVIDER = [
       },
     }),
   ],
-  entryComponents: [
-    AddClientDialogComponent,
-    EditClientDialogComponent,
-    DeleteClientDialogComponent,
-    DialogConfirmComponent,
-    AddUserDialogComponent,
-    EditUserDialogComponent,
-    ChangeStatusDialogComponent,
-    AddStudentDialogComponent
-  ],
+  // remove entryComponents
+  // entryComponents: [
+  //   AddClientDialogComponent,
+  //   EditClientDialogComponent,
+  //   DeleteClientDialogComponent,
+  //   DialogConfirmComponent,
+  //   AddUserDialogComponent,
+  //   EditUserDialogComponent,
+  //   ChangeStatusDialogComponent,
+  //   AddStudentDialogComponent
+  // ],
   providers: [
     Constants,
     NoopInterceptor,

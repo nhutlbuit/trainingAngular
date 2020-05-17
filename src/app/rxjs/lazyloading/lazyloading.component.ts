@@ -1,4 +1,5 @@
-import { Component, OnInit, AfterViewInit, NgModule, Type, ComponentFactoryResolver, ViewContainerRef, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, NgModule, Type, ComponentFactoryResolver, ViewContainerRef,
+  ViewChild, ChangeDetectorRef, ɵrenderComponent, ɵɵdirectiveInject, INJECTOR } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
@@ -19,7 +20,9 @@ export class LazyLoadingComponent implements OnInit, AfterViewInit {
   cardLazyLoad?: Promise<Type<any>>;
   typeScriptLazyLoad?: Promise<Type<any>>;
   dataTranfer: string;
-  constructor(private factoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) {}
+  constructor(private factoryResolver: ComponentFactoryResolver,
+    private viewContainerRef: ViewContainerRef,
+    cd: ChangeDetectorRef) {}
 
   ngOnInit() { }
 
@@ -44,13 +47,13 @@ export class LazyLoadingComponent implements OnInit, AfterViewInit {
     const { CardComponent } = await import('../card/card.component');
     const factory = this.factoryResolver.resolveComponentFactory(CardComponent);
     this.anchor.clear();
-    let instance = this.anchor.createComponent(factory).instance;
+    const {instance} = this.anchor.createComponent(factory);
     instance.message = 'abcde';
   }
 
-  loadCardComponent1() {
-    import('../card/card.component').then(({ CardComponent }) => {
-      const factory = this.factoryResolver.resolveComponentFactory(CardComponent);
+  loadCardDynamicComponent() {
+    import('../card/card.component').then(m => {
+      const factory = this.factoryResolver.resolveComponentFactory(m.CardComponent);
       this.anchor.clear();
       this.anchor.createComponent(factory);
     });
@@ -58,7 +61,7 @@ export class LazyLoadingComponent implements OnInit, AfterViewInit {
 
   loadTypescriptComponent() {
     if (!this.typeScriptLazyLoad) {
-      this.typeScriptLazyLoad = import('../typescript/typescript.component').then(({ TypeScriptComponent }) => TypeScriptComponent);
+      this.typeScriptLazyLoad = import('../typescript/typescript.component').then(m => m.TypeScriptComponent);
     }
   }
 
@@ -84,3 +87,23 @@ export class LazyLoadingComponent implements OnInit, AfterViewInit {
   declarations: [LazyLoadingComponent, PlaceholderDirective]
 })
 export class LazyModule {}
+
+export function LazyComponent(config: { path: string, component: string, host: string }) {
+  return (cmpType) => {
+    const originalFactory = cmpType.ngComponentDef.factory;
+    cmpType.ngComponentDef.factory = (...args) => {
+      const cmp = originalFactory(...args);
+
+      const injector = ɵɵdirectiveInject(INJECTOR);
+
+      import(`${config.path}`).then(m =>
+        ɵrenderComponent(m[config.component], { host: config.host, injector }));
+
+      if (cmp.afterViewLoad) {
+        cmp.afterViewLoad();
+      }
+      return cmp;
+    };
+    return cmpType;
+  };
+}

@@ -27,7 +27,6 @@ export class TypeScriptComponent implements OnInit, AfterViewInit {
   // }
 
   constructor() {
-    debugger
     this.initData;
     this.message;
   }
