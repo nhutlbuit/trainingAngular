@@ -1,7 +1,8 @@
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatCardModule, MatDatepickerModule, MatDialogModule, MatExpansionModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatSelectModule, MatSidenavModule, MatSliderModule, MatSnackBarModule, MatToolbarModule, MatTooltipModule } from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatDatepickerModule, MatDialogModule, MatExpansionModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule,
+  MatSelectModule, MatSidenavModule, MatSliderModule, MatSnackBarModule, MatToolbarModule, MatTooltipModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -9,13 +10,19 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { createTranslateLoader } from '../config/translate';
 import { AppComponent } from './app.component';
+import { AdminGuard } from './guards/admin';
 import { NoopInterceptor } from './service/noop-Interceptor.service';
 import { Constants } from './shared/constants';
 import { SlNavbarComponent } from './uicomp/sl-navbar/sl-navbar.component';
 import { SlToolbarComponent } from './uicomp/sl-toolbar/sl-toolbar.component';
 
 @NgModule({
-  exports: [
+  declarations: [
+    AppComponent,
+     SlToolbarComponent,
+     SlNavbarComponent
+  ],
+  imports: [
     MatDatepickerModule,
     MatDialogModule,
     MatExpansionModule,
@@ -29,24 +36,10 @@ import { SlToolbarComponent } from './uicomp/sl-toolbar/sl-toolbar.component';
     MatSnackBarModule,
     MatToolbarModule,
     MatTooltipModule,
-  ],
-  declarations: []
-})
-export class MaterialModule {}
-@NgModule({
-  declarations: [
-    AppComponent,
-     SlToolbarComponent,
-     SlNavbarComponent
-  ],
-  imports: [
-    MaterialModule,
     BrowserAnimationsModule,
     BrowserModule,
-    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatCardModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -63,22 +56,22 @@ export class MaterialModule {}
       {
         path: 'switchmap',
         loadChildren: () => import('./rxjs/switchmap/switchmap.component').then(m => m.SwitchMapModule),
-        canActivate: []
+        canActivate: [AdminGuard]
       },
       {
         path: 'parent',
         loadChildren: () => import('./rxjs/parent/parent.component').then(m => m.ParentModule),
-        canActivate: []
+        canActivate: [AdminGuard]
       },
       {
         path: 'lazyloading',
          loadChildren: () => import('./rxjs/lazyloading/lazyloading.component').then(({LazyModule}) => LazyModule),
-        canActivate: []
+        canActivate: [AdminGuard]
       },
       {
         path: 'change-detection',
          loadChildren: () => import('./rxjs/change-detection/change-detection.component').then(m => m.ChangeDetectionModule),
-        canActivate: []
+        canActivate: [AdminGuard]
       }
     ])
   ],

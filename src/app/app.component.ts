@@ -9,7 +9,6 @@ import {
 import { UIService } from './service/uiservice.service';
 import { MatSidenav } from '@angular/material';
 import { AuthenticationService } from './service/authentication.service';
-import 'rxjs/add/observable/combineLatest';
 import { AuthStore } from './stores/auth.store';
 import { Constants } from './shared/constants';
 import { Common } from './shared/common';
