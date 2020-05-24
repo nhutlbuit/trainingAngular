@@ -4,7 +4,6 @@ import { MatDialog, MatPaginator, MatSnackBar, MatSnackBarHorizontalPosition,
 import { AppInfo } from '../../model/app-info';
 import { ClientAppService } from '../../service/client-app.service';
 import { AddClientDialogComponent } from '../dialogs/add-client-dialog/add-client-dialog.component';
-import { DialogConfirmComponent } from '../dialogs/confirm-dialog/dialog-confirm.component';
 import { DialogModel } from '../dialogs/dialog-model/dialog-model';
 import { EditClientDialogComponent } from '../dialogs/edit-client-dialog/edit-client-dialog.component';
 import { UserService } from '../../service/user.service';
@@ -68,24 +67,24 @@ export class ClientAppComponent implements OnInit, AfterViewInit {
   }
 
   deleteDialog(item: any) {
-    this.dialogContainer = new DialogModel();
-    this.dialogContainer.title = item.isActive === 1 ? 'Confirm Disable App' : 'Confirm Enable App';
-    this.dialogContainer.content = item.isActive === 1 ? 'Are you sure to disable?' : 'Are you sure to enable?';
-    const dialogRef = this.dialog.open(DialogConfirmComponent, {
-      height: '200px',
-      width: '420px',
-      data: { bundle: this.dialogContainer }
-    });
+    // this.dialogContainer = new DialogModel();
+    // this.dialogContainer.title = item.isActive === 1 ? 'Confirm Disable App' : 'Confirm Enable App';
+    // this.dialogContainer.content = item.isActive === 1 ? 'Are you sure to disable?' : 'Are you sure to enable?';
+    // const dialogRef = this.dialog.open(DialogConfirmComponent, {
+    //   height: '200px',
+    //   width: '420px',
+    //   data: { bundle: this.dialogContainer }
+    // });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.confirmDisable(item.id, item.isActive);
-      } else {
-        this.loadData();
-      }
-    }, error => {
-      console.log(error);
-    });
+    // dialogRef.afterClosed().subscribe(result => {
+    //   if (result) {
+    //     this.confirmDisable(item.id, item.isActive);
+    //   } else {
+    //     this.loadData();
+    //   }
+    // }, error => {
+    //   console.log(error);
+    // });
   }
 
   addNew(appInfo: AppInfo) {

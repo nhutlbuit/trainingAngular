@@ -1,11 +1,10 @@
+import { ScopeService } from './../../service/scope.service';
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import {
   MatTableDataSource, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition,
   MatPaginator, MatDialog, MatSnackBar, MatSort
 } from '@angular/material';
 import { DialogModel } from '../dialogs/dialog-model/dialog-model';
-import { ScopeService } from '../../service/scope.service';
-import { DialogConfirmComponent } from '../dialogs/confirm-dialog/dialog-confirm.component';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -131,28 +130,28 @@ export class ScopeComponent implements OnInit, AfterViewInit {
 
   deleteScope(id: number) {
 
-    this.dialogContainer = new DialogModel();
-    this.dialogContainer.title = 'Confirm Delete Scope';
-    this.dialogContainer.content = 'Are you sure to delete?';
-    const dialogRef = this.dialog.open(DialogConfirmComponent, {
-      height: '200px',
-      width: '420px',
-      data: { bundle: this.dialogContainer }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.scopeService.deleteScope(id).subscribe(response => {
-          this.openSnackBar('Successfully', 'Delete');
-          this.loadData();
-        }, error => {
-          this.openSnackBar(error.statusText, 'Delete');
-        });
-      } else {
-        this.loadData();
-      }
-    }, error => {
-      console.log(error);
-    });
+    // this.dialogContainer = new DialogModel();
+    // this.dialogContainer.title = 'Confirm Delete Scope';
+    // this.dialogContainer.content = 'Are you sure to delete?';
+    // const dialogRef = this.dialog.open(DialogConfirmComponent, {
+    //   height: '200px',
+    //   width: '420px',
+    //   data: { bundle: this.dialogContainer }
+    // });
+    // dialogRef.afterClosed().subscribe(result => {
+    //   if (result) {
+    //     this.scopeService.deleteScope(id).subscribe(response => {
+    //       this.openSnackBar('Successfully', 'Delete');
+    //       this.loadData();
+    //     }, error => {
+    //       this.openSnackBar(error.statusText, 'Delete');
+    //     });
+    //   } else {
+    //     this.loadData();
+    //   }
+    // }, error => {
+    //   console.log(error);
+    // });
   }
 
 }

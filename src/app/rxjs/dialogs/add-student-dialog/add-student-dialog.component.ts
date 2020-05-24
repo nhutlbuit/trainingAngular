@@ -1,8 +1,11 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef, MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { ScopeService } from '../../../service/scope.service';
+import { CommonModule } from '@angular/common';
+import { Component, Inject, NgModule, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { DateAdapter, MatButtonModule, MatCardModule, MatDatepickerModule, MatDialogModule, MatDialogRef,
+  MatFormFieldModule, MatGridListModule, MatIconModule, MatInputModule, MatRippleModule, MatSelectModule,
+  MatSnackBarModule, MatTooltipModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MAT_DIALOG_DATA } from '@angular/material';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { ScopeService } from '../../../service/scope.service';
 import { RxjsService } from '../../service/rxjs.service';
 
 export const MY_DATE_FORMATS = {
@@ -92,5 +95,31 @@ export class AddStudentDialogComponent implements OnInit {
   handlerErr() {
     alert('Updated has error. Please contact admin!');
   }
+
+}
+
+const modules = [
+  CommonModule,
+  FormsModule,
+  MatButtonModule,
+  MatInputModule,
+  MatIconModule,
+  MatFormFieldModule,
+  MatRippleModule,
+  MatCardModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatSelectModule,
+  MatSnackBarModule,
+  MatTooltipModule,
+  ReactiveFormsModule,
+  MatGridListModule
+];
+
+@NgModule({
+  imports: [...modules],
+  declarations: [AddStudentDialogComponent],
+})
+export class AddStudentModule {
 
 }

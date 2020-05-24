@@ -1,6 +1,8 @@
-import { Component, OnInit, AfterViewInit, Inject, Input } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogModule } from '@angular/material/dialog';
+import { Component, OnInit, AfterViewInit, Inject, Input, NgModule } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatButtonModule } from '@angular/material';
 import { DialogModel } from '../dialog-model/dialog-model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dialog-confirm',
@@ -18,3 +20,12 @@ export class DialogConfirmComponent {
   }
 
 }
+
+@NgModule({
+  imports: [ CommonModule, MatButtonModule, MatDialogModule],
+  declarations: [DialogConfirmComponent],
+})
+export class DialogConfirmModule {
+
+}
+

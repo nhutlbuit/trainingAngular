@@ -1,40 +1,35 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ClientAppComponent } from './uicomp/client-app/client-app.component';
-import { ScopeComponent } from './uicomp/scope/scope.component';
-import { UserDashboardComponent } from './uicomp/user-dashboard/user-dashboard.component';
-import { RoleDashboardComponent } from './uicomp/role-dashboard/role-dashboard.component';
-import { SwitchmapComponent } from './rxjs/switchmap/switchmap.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/users',
+    redirectTo: '/switchmap',
     pathMatch: 'full'
   },
-  {
-    path: 'client-app',
-    component: ClientAppComponent,
-    canActivate: []
-  },
-  {
-    path: 'users',
-    component: UserDashboardComponent,
-    canActivate: []
-  },
-  {
-    path: 'scope',
-    component: ScopeComponent,
-    canActivate: []
-  },
-  {
-    path: 'roles',
-    component: RoleDashboardComponent,
-    canActivate: []
-  },
+  // {
+  //   path: 'client-app',
+  //   component: ClientAppComponent,
+  //   canActivate: []
+  // },
+  // {
+  //   path: 'users',
+  //   component: UserDashboardComponent,
+  //   canActivate: []
+  // },
+  // {
+  //   path: 'scope',
+  //   component: ScopeComponent,
+  //   canActivate: []
+  // },
+  // {
+  //   path: 'roles',
+  //   component: RoleDashboardComponent,
+  //   canActivate: []
+  // },
   {
     path: 'switchmap',
-    component: SwitchmapComponent,
+    loadChildren: () => import('./rxjs/switchmap/switchmap.component').then(m => m.SwitchMapModule),
     canActivate: []
   },
   {

@@ -8,20 +8,6 @@ const PROXY_CONFIG = [
     secure: false,
     changeOrigin: true,
     logLevel: "debug",
-  },
-  {
-    context: [
-      "/abc",
-    ],
-    target: "http://localhost.net:8080",
-    secure: false,
-    changeOrigin: true,
-    ws: true,
-    logLevel: "debug",
-    headers: {host: 'abc.com'},
-    cookieDomainRewrite: {
-      ".abc.com": ".abc.net"
-    }
   }
 ];
 

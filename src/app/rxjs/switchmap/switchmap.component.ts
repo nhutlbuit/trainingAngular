@@ -1,20 +1,21 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { MatDialog, MatSnackBar, MatPaginator, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material';
-import { FormControl } from '@angular/forms';
-import { AddStudentDialogComponent } from '../dialogs/add-student-dialog/add-student-dialog.component';
-import { Student } from '../model/student';
-import { RxjsService } from '../service/rxjs.service';
-import { DialogModel } from '../../uicomp/dialogs/dialog-model/dialog-model';
-import { DialogConfirmComponent } from '../../uicomp/dialogs/confirm-dialog/dialog-confirm.component';
+import { CommonModule } from '@angular/common';
+import { AfterViewInit, Component, NgModule, ViewChild } from '@angular/core';
+import { FormControl, FormsModule } from '@angular/forms';
+import { MatButtonModule, MatCardModule, MatDialog, MatIconModule, MatInputModule, MatPaginator, MatPaginatorModule,
+  MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, MatTableModule } from '@angular/material';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { RouterModule } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { tap } from 'rxjs/operators';
-
+import { DialogModel } from '../../uicomp/dialogs/dialog-model/dialog-model';
+import { Student } from '../model/student';
+import { RxjsService } from '../service/rxjs.service';
 @Component({
   selector: 'app-switchmap',
   templateUrl: './switchmap.component.html',
   styleUrls: ['./switchmap.component.css']
 })
-export class SwitchmapComponent implements OnInit, AfterViewInit {
+export class SwitchmapComponent implements AfterViewInit {
 
   searchField: FormControl;
   searchUserName$ = new BehaviorSubject('');
@@ -25,12 +26,10 @@ export class SwitchmapComponent implements OnInit, AfterViewInit {
   displayedColumns = ['studentCode', 'name', 'class', 'dob', 'phone', 'address', 'actions'];
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  addStudentLazyLoad: any;
+  deleteStudentLazyLoad: any;
 
   constructor(public rxjsService: RxjsService, public dialog: MatDialog, public snackBar: MatSnackBar) {
-
-  }
-
-  ngOnInit() {
 
   }
 
@@ -65,7 +64,7 @@ export class SwitchmapComponent implements OnInit, AfterViewInit {
     });
   }
 
-  addNewOrUpdate(row?: any) {
+  async addNewOrUpdate(row?: any) {
     let st = new Object();
     if (row) {
       st = new Student(row);
@@ -74,7 +73,10 @@ export class SwitchmapComponent implements OnInit, AfterViewInit {
       st['isAddNew'] = true;
     }
 
-    const dialogRef = this.dialog.open(AddStudentDialogComponent, {
+    if (!this.addStudentLazyLoad) {
+      this.addStudentLazyLoad = await import('../dialogs/add-student-dialog/add-student-dialog.component');
+    }
+    const dialogRef = this.dialog.open(this.addStudentLazyLoad.AddStudentDialogComponent, {
       data: {
         student: st,
       },
@@ -88,11 +90,15 @@ export class SwitchmapComponent implements OnInit, AfterViewInit {
     });
   }
 
-  deleteDialog(item: any) {
+  async deleteDialog(item: any) {
+    if (!this.deleteStudentLazyLoad) {
+      this.deleteStudentLazyLoad = await import('../../uicomp/dialogs/confirm-dialog/dialog-confirm.component');
+    }
+
     const dialogContainer = new DialogModel();
     dialogContainer.title = 'Confirm Message';
     dialogContainer.content = `Are you sure delete student <b>${item.fullName}</b>?`;
-    const dialogRef = this.dialog.open(DialogConfirmComponent, {
+    const dialogRef = this.dialog.open(this.deleteStudentLazyLoad.DialogConfirmComponent, {
       height: '200px',
       width: '420px',
       data: { bundle: dialogContainer }
@@ -119,6 +125,28 @@ export class SwitchmapComponent implements OnInit, AfterViewInit {
     });
   }
 
-
 }
+
+@NgModule({
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatAutocompleteModule,
+    MatButtonModule,
+    MatIconModule,
+    MatInputModule,
+    MatCardModule,
+    FormsModule,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: SwitchmapComponent
+      }
+    ])
+  ],
+  declarations: [SwitchmapComponent]
+})
+export class SwitchMapModule {}
 
