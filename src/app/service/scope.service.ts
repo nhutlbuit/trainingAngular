@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { Scope } from '../model/scope';
 import { UIService } from './uiservice.service';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class ScopeService {
 
   private scopeUrl;

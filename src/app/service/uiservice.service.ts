@@ -2,7 +2,7 @@ import { Injectable, EventEmitter, Output } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class UIService {
 
   baseAccountURL: string;

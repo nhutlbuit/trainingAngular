@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 import { UIService } from './uiservice.service';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class ClientAppService {
 
   private ROOT_URL;

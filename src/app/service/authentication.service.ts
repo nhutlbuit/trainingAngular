@@ -8,7 +8,7 @@ import { Constants } from '../shared/constants';
 import { Router } from '@angular/router';
 import { UIService } from './uiservice.service';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class AuthenticationService {
   private loggedIn = new BehaviorSubject<boolean>(false);
 

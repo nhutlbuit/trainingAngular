@@ -3,8 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Role } from '../model/role';
 import { UIService } from './uiservice.service';
-
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class RoleService {
   private ROOT_URL;
 

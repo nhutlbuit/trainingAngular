@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, NgModule, ViewChild } from '@angular/core';
 import { FormControl, FormsModule } from '@angular/forms';
 import { MatButtonModule, MatCardModule, MatDialog, MatIconModule, MatInputModule, MatPaginator, MatPaginatorModule,
-  MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, MatTableModule } from '@angular/material';
+   MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, MatTableModule, MatSnackBar } from '@angular/material';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { RouterModule } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -26,8 +26,8 @@ export class SwitchmapComponent implements AfterViewInit {
   displayedColumns = ['studentCode', 'name', 'class', 'dob', 'phone', 'address', 'actions'];
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
-  addStudentLazyLoad: any;
-  deleteStudentLazyLoad: any;
+  addStudentInstance: any;
+  deleteStudentInstance: any;
 
   constructor(public rxjsService: RxjsService, public dialog: MatDialog, public snackBar: MatSnackBar) {
 
@@ -73,10 +73,10 @@ export class SwitchmapComponent implements AfterViewInit {
       st['isAddNew'] = true;
     }
 
-    if (!this.addStudentLazyLoad) {
-      this.addStudentLazyLoad = await import('../dialogs/add-student-dialog/add-student-dialog.component');
+    if (!this.addStudentInstance) {
+      this.addStudentInstance = await import('../dialogs/add-student-dialog/add-student-dialog.component');
     }
-    const dialogRef = this.dialog.open(this.addStudentLazyLoad.AddStudentDialogComponent, {
+    const dialogRef = this.dialog.open(this.addStudentInstance.AddStudentDialogComponent, {
       data: {
         student: st,
       },
@@ -91,14 +91,14 @@ export class SwitchmapComponent implements AfterViewInit {
   }
 
   async deleteDialog(item: any) {
-    if (!this.deleteStudentLazyLoad) {
-      this.deleteStudentLazyLoad = await import('../../uicomp/dialogs/confirm-dialog/dialog-confirm.component');
+    if (!this.deleteStudentInstance) {
+      this.deleteStudentInstance = await import('../../uicomp/dialogs/confirm-dialog/dialog-confirm.component');
     }
 
     const dialogContainer = new DialogModel();
     dialogContainer.title = 'Confirm Message';
     dialogContainer.content = `Are you sure delete student <b>${item.fullName}</b>?`;
-    const dialogRef = this.dialog.open(this.deleteStudentLazyLoad.DialogConfirmComponent, {
+    const dialogRef = this.dialog.open(this.deleteStudentInstance.DialogConfirmComponent, {
       height: '200px',
       width: '420px',
       data: { bundle: dialogContainer }
@@ -127,18 +127,21 @@ export class SwitchmapComponent implements AfterViewInit {
 
 }
 
+const modules = [
+  CommonModule,
+  MatButtonModule,
+  MatPaginatorModule,
+  MatTableModule,
+  MatAutocompleteModule,
+  MatButtonModule,
+  MatIconModule,
+  MatInputModule,
+  MatCardModule,
+  FormsModule
+];
 @NgModule({
   imports: [
-    CommonModule,
-    MatButtonModule,
-    MatPaginatorModule,
-    MatTableModule,
-    MatAutocompleteModule,
-    MatButtonModule,
-    MatIconModule,
-    MatInputModule,
-    MatCardModule,
-    FormsModule,
+    ...modules,
     RouterModule.forChild([
       {
         path: '',
@@ -146,6 +149,7 @@ export class SwitchmapComponent implements AfterViewInit {
       }
     ])
   ],
+//  exports: [...modules],
   declarations: [SwitchmapComponent]
 })
 export class SwitchMapModule {}

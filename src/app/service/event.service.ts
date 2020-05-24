@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class EventService {
   public closeDialogEventSource: EventEmitter<any>;
   public closeOutboundDialogs: EventEmitter<any>;
