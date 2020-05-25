@@ -34,8 +34,7 @@ import { MatButtonModule } from '@angular/material/button';
      SlNavbarComponent
   ],
   imports: [
-    MatDatepickerModule,
-    MatDialogModule,
+    // for navbar and toolbar component init the same time AppComponent
     MatExpansionModule,
     MatIconModule,
     MatInputModule,
@@ -47,11 +46,14 @@ import { MatButtonModule } from '@angular/material/button';
     MatSnackBarModule,
     MatToolbarModule,
     MatTooltipModule,
+    MatButtonModule,
+
+    MatDatepickerModule,
+    MatDialogModule,
     BrowserAnimationsModule,
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatButtonModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

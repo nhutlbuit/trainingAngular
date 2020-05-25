@@ -1,10 +1,10 @@
-<div style="width: 95%; padding: 15px 15px 15px 15px;">
-    <button class="margin-left" mat-raised-button (click)="loadLazy()">{{'LOAD1' | translate }}</button>
-    <div *ngIf="loaded">
-        <ng-container *ngComponentOutlet="myComponent"></ng-container>
+<div class="container">
+    <button class="margin-left" mat-raised-button (click)="loadInteractionComponent()">{{'INTERACTION' | translate }}</button>
+    <div *ngIf="isLoadInteractionComponent">
+        <ng-container *ngComponentOutlet="interactionComponent"></ng-container>
     </div>
 
-    <button class="margin-left" mat-raised-button (click)="loadComponent()">{{'LOAD2' | translate }}</button>
+    <button class="margin-left" mat-raised-button (click)="loadComponent()">{{'CARD' | translate }}</button>
     <ng-container #anchor></ng-container>
 
     <button class="margin-left" mat-raised-button (click)="loadCardComponent()">{{'LOAD3' | translate }}</button>
@@ -18,5 +18,5 @@
     </ng-container>
 
     <button class="margin-left" mat-raised-button (click)="loadCardDirective()">Load TypeScriptComponent Via Directive</button>
-    <ng-template [appPlaceholder]="compHolder" [initData]="dataTranfer"></ng-template>
+    <ng-template [appPlaceholder]="compHolder" [initData]="dataTransfer"></ng-template>
 </div>

@@ -1,3 +1,4 @@
+import { DialogModel } from './dialogs/dialog-model/dialog-model';
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, NgModule, ViewChild } from '@angular/core';
 import { FormControl, FormsModule } from '@angular/forms';
@@ -5,7 +6,6 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { RouterModule } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { tap } from 'rxjs/operators';
-import { DialogModel } from '../../uicomp/dialogs/dialog-model/dialog-model';
 import { Student } from '../model/student';
 import { RxjsService } from '../service/rxjs.service';
 import { MatButtonModule } from '@angular/material/button';
@@ -81,7 +81,7 @@ export class SwitchmapComponent implements AfterViewInit {
     }
 
     if (!this.addStudentInstance) {
-      this.addStudentInstance = await import('../dialogs/add-student-dialog/add-student-dialog.component');
+      this.addStudentInstance = await import('./dialogs/add-student-dialog/add-student-dialog.component');
     }
     const dialogRef = this.dialog.open(this.addStudentInstance.AddStudentDialogComponent, {
       data: {
@@ -99,7 +99,7 @@ export class SwitchmapComponent implements AfterViewInit {
 
   async deleteDialog(item: any) {
     if (!this.deleteStudentInstance) {
-      this.deleteStudentInstance = await import('../../uicomp/dialogs/confirm-dialog/dialog-confirm.component');
+      this.deleteStudentInstance = await import('./dialogs/confirm-dialog/dialog-confirm.component');
     }
 
     const dialogContainer = new DialogModel();

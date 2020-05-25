@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UIService } from '../../service/uiservice.service';
 import { TranslateService } from '@ngx-translate/core';
-import { AuthenticationService } from '../../service/authentication.service';
-import { AuthStore } from '../../stores/auth.store';
 import { getSelectedLanguage, SUPPORTED_LANGS } from '../../../config/translate';
+import { AuthenticationService } from '../../service/authentication.service';
+import { UIService } from '../../service/uiservice.service';
+import { AuthStore } from '../../stores/auth.store';
 
 @Component({
   selector: 'app-sl-toolbar',

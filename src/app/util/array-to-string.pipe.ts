@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Scope } from '../../model/scope';
+import { Scope } from '../model/scope';
 
 @Pipe({name: 'arrayToString'})
 export class ArrayToStringPipe implements PipeTransform {
