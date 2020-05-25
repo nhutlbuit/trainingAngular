@@ -25,7 +25,6 @@ export class SlToolbarComponent implements OnInit {
       translate.setDefaultLang(SUPPORTED_LANGS[0]);
       translate.addLangs(SUPPORTED_LANGS);
       translate.use(getSelectedLanguage(translate));
-      
     }
 
   emitNavBarEvent(): void {
