@@ -1,8 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, NgModule, ViewChild } from '@angular/core';
 import { FormControl, FormsModule } from '@angular/forms';
-import { MatButtonModule, MatCardModule, MatDialog, MatIconModule, MatInputModule, MatPaginator, MatPaginatorModule,
-   MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, MatTableModule, MatSnackBar } from '@angular/material';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { RouterModule } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -10,6 +8,15 @@ import { tap } from 'rxjs/operators';
 import { DialogModel } from '../../uicomp/dialogs/dialog-model/dialog-model';
 import { Student } from '../model/student';
 import { RxjsService } from '../service/rxjs.service';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-switchmap',
   templateUrl: './switchmap.component.html',

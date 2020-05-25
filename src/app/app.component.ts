@@ -1,3 +1,4 @@
+import { MatSidenav } from '@angular/material/sidenav';
 import {
   Component,
   ViewChild,
@@ -7,7 +8,6 @@ import {
   ElementRef
 } from '@angular/core';
 import { UIService } from './service/uiservice.service';
-import { MatSidenav } from '@angular/material';
 import { AuthenticationService } from './service/authentication.service';
 import { AuthStore } from './stores/auth.store';
 import { Constants } from './shared/constants';

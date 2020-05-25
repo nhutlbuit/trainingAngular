@@ -1,9 +1,13 @@
 import { Component, OnInit, AfterViewInit, NgModule, ElementRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ChildComponent } from '../child/child.component';
-import { MatButtonModule, MatInputModule, MatIconModule, MatFormFieldModule, MatRippleModule } from '@angular/material';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatRippleModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-parent',

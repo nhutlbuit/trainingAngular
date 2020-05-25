@@ -1,12 +1,21 @@
 import { CommonModule } from '@angular/common';
 import { Component, Inject, NgModule, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { DateAdapter, MatButtonModule, MatCardModule, MatDatepickerModule, MatDialogModule, MatDialogRef,
-  MatFormFieldModule, MatGridListModule, MatIconModule, MatInputModule, MatRippleModule, MatSelectModule,
-  MatSnackBarModule, MatTooltipModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MAT_DIALOG_DATA } from '@angular/material';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { ScopeService } from '../../../service/scope.service';
 import { RxjsService } from '../../service/rxjs.service';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatCardModule } from '@angular/material/card';
+import { MatRippleModule, MAT_DATE_LOCALE, MAT_DATE_FORMATS, DateAdapter } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 export const MY_DATE_FORMATS = {
   parse: {
