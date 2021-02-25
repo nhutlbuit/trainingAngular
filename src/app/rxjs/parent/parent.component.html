@@ -13,7 +13,7 @@
           <mat-icon matSuffix (click)="clearMessage()" style="cursor: pointer; color: red">clear</mat-icon>
           <input matInput placeholder="Enter value" [(ngModel)]="inputA" name="inputA" autofocus type="text">
         </mat-form-field>
-        <p>Message from child: <span style="color: red;"> {{messageFromChild}}</span></p>
+        <p>Message from child: <span style="color: red;"> {{messageFromChild | lower}}</span></p>
       </div>
       <button style="margin-left: 15px;" mat-raised-button color="blue" (click)="doSomething()">update</button>
 

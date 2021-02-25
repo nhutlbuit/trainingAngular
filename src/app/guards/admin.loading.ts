@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router';
+import { CanLoad, Route } from '@angular/router';
 import { AuthStore } from '../stores/auth.store';
 
 @Injectable({providedIn: 'root'})
-export class AdminGuard implements CanActivate {
+export class AdminLoadingGuard implements CanLoad {
 
     constructor(private authStore: AuthStore)  {
 
     }
 
-    canActivate(): boolean {
-        return true ; // this.authStore.getAdminGuard();
-    }
+    canLoad(route: Route): boolean {
+        return true;
+      }
 
 }

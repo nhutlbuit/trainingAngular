@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule } from '@angular/router';
+import { RouterModule, PreloadAllModules } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { createTranslateLoader } from '../config/translate';
@@ -27,6 +27,8 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
+import {QuicklinkStrategy, QuicklinkModule} from 'ngx-quicklink';
+import { AdminLoadingGuard } from './guards/admin.loading';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,6 +63,7 @@ import { MatButtonModule } from '@angular/material/button';
         deps: [HttpClient],
       },
     }),
+    QuicklinkModule,
     RouterModule.forRoot([
       {
         path: '',
@@ -70,7 +73,7 @@ import { MatButtonModule } from '@angular/material/button';
       {
         path: 'switchmap',
         loadChildren: () => import('./rxjs/switchmap/switchmap.component').then(m => m.SwitchMapModule),
-        canActivate: [AdminGuard]
+      //  canActivate: [AdminGuard]
       },
       {
         path: 'parent',
@@ -85,9 +88,13 @@ import { MatButtonModule } from '@angular/material/button';
       {
         path: 'change-detection',
          loadChildren: () => import('./rxjs/change-detection/change-detection.component').then(m => m.ChangeDetectionModule),
-        canActivate: [AdminGuard]
+        canActivate: [AdminGuard],
+       // canLoad: [AdminLoadingGuard]
       }
-    ])
+    ], {
+      // preloadingStrategy: PreloadAllModules
+       preloadingStrategy: QuicklinkStrategy
+    })
   ],
   // remove providers of service
   // remove entryComponents of dialogs

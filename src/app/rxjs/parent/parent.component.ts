@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatRippleModule } from '@angular/material/core';
+import { LowerCase } from '../pipe/lower-case';
 
 @Component({
   selector: 'app-parent',
@@ -69,7 +70,7 @@ const routes: Routes = [
 @NgModule({
   imports: [...modules, RouterModule.forChild(routes)],
   exports: [...modules, ParentComponent],
-  declarations: [ParentComponent, ChildComponent],
+  declarations: [ParentComponent, ChildComponent, LowerCase],
 })
 export class ParentModule {
   static components = {
