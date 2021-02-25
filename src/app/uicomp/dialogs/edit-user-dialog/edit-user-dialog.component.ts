@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
 import { UserDto } from '../../../model/user-dto';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserInfo } from '../../../model/user-info';
 import { User } from '../../../model/user';
 import { RoleService } from '../../../service/role.service';

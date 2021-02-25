@@ -1,11 +1,12 @@
 import { ScopeService } from './../../service/scope.service';
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import {
-  MatTableDataSource, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition,
-  MatPaginator, MatDialog, MatSnackBar, MatSort
-} from '@angular/material';
 import { DialogModel } from '../dialogs/dialog-model/dialog-model';
 import { FormControl, Validators } from '@angular/forms';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
+import {MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-scope',

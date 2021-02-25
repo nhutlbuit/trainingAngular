@@ -7,7 +7,6 @@ import {
   ElementRef
 } from '@angular/core';
 import { UIService } from './service/uiservice.service';
-import { MatSidenav } from '@angular/material';
 import { AuthenticationService } from './service/authentication.service';
 import 'rxjs/add/observable/combineLatest';
 import { AuthStore } from './stores/auth.store';
@@ -16,6 +15,7 @@ import { Common } from './shared/common';
 import { NoopInterceptor } from './service/noop-Interceptor.service';
 import * as moment from 'moment';
 import 'moment-timezone';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-root',

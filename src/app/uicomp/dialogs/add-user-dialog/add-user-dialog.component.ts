@@ -8,7 +8,7 @@ import { VN_DATE_PROVIDER } from '../../../util/date-format';
 import { EventService } from '../../../service/event.service';
 import { UserService } from '../../../service/user.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
 import { PasswordValidator } from '../../../util/password-validator';
 import {
   ConfirmValidParentMatcher,

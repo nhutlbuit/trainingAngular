@@ -1,7 +1,8 @@
 import { COMMA, ENTER, SPACE } from '@angular/cdk/keycodes';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatChipInputEvent, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AppInfo } from '../../../model/app-info';
 import { Scope } from '../../../model/scope';
 import { ClientAppService } from '../../../service/client-app.service';

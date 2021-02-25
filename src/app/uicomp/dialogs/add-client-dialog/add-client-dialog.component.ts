@@ -1,11 +1,12 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef, MatChipInputEvent } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ClientAppService } from '../../../service/client-app.service';
 import { AppInfo } from '../../../model/app-info';
 import {ENTER, COMMA, SPACE} from '@angular/cdk/keycodes';
 import { Scope } from '../../../model/scope';
 import { ScopeService } from '../../../service/scope.service';
+import { MatChipInputEvent } from '@angular/material/chips';
 
 
 @Component({
@@ -155,7 +156,5 @@ export class AddClientDialogComponent implements OnInit {
       this.resourceIds.splice(index, 1);
     }
   }
-
-  
 
 }

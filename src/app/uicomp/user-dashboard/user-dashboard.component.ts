@@ -1,17 +1,14 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { UserService } from '../../service/user.service';
-import {
-  MatDialog,
-  MatPaginator,
-  MatTableDataSource,
-  MatDialogConfig
-} from '@angular/material';
 import { AddUserDialogComponent } from '../dialogs/add-user-dialog/add-user-dialog.component';
 import { EventService } from '../../service/event.service';
 import { tap } from 'rxjs/operators/tap';
 import { EditUserDialogComponent } from '../dialogs/edit-user-dialog/edit-user-dialog.component';
 import { ChangeStatusDialogComponent } from '../dialogs/change-status-dialog/change-status-dialog.component';
 import { UIService } from '../../service/uiservice.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import {MatTableDataSource} from '@angular/material/table';
+import {MatPaginator} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-user-dashboard',

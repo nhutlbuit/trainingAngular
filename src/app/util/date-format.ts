@@ -1,5 +1,6 @@
-import { MAT_DATE_LOCALE, MAT_DATE_FORMATS, DateAdapter } from '@angular/material';
+
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 
 export const VN_DATE_FORMATS = {
     parse: {
@@ -13,5 +14,5 @@ export const VN_DATE_FORMATS = {
 export const VN_DATE_PROVIDER = [
     { provide: MAT_DATE_LOCALE, useValue: 'vi' },
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
-    { provide: MAT_DATE_FORMATS, useValue: VN_DATE_FORMATS }
+    { provide: VN_DATE_FORMATS, useValue: VN_DATE_FORMATS }
 ];

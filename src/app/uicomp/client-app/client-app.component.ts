@@ -1,12 +1,14 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatPaginator, MatSnackBar, MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition, MatTableDataSource } from '@angular/material';
+import {MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, MatSnackBar} from '@angular/material/snack-bar';
 import { AppInfo } from '../../model/app-info';
 import { ClientAppService } from '../../service/client-app.service';
 import { AddClientDialogComponent } from '../dialogs/add-client-dialog/add-client-dialog.component';
 import { DialogModel } from '../dialogs/dialog-model/dialog-model';
 import { EditClientDialogComponent } from '../dialogs/edit-client-dialog/edit-client-dialog.component';
 import { UserService } from '../../service/user.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-client-app',

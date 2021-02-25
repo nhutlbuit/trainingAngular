@@ -1,7 +1,6 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {ClientAppService} from '../../../service/client-app.service';
-import {AppInfo} from '../../../model/app-info';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ClientAppService } from '../../../service/client-app.service';
 
 @Component({
   selector: 'app-delete-client-dialog',

@@ -1,14 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {
-  MatTableDataSource,
-  MatPaginator,
-  MatDialog,
-  MatDialogConfig
-} from '@angular/material';
 import { EventService } from '../../service/event.service';
 import { RoleService } from '../../service/role.service';
 import { tap } from 'rxjs/operators/tap';
 import { ChangeStatusDialogComponent } from '../dialogs/change-status-dialog/change-status-dialog.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-role-dashboard',

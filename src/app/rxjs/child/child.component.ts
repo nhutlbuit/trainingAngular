@@ -7,7 +7,7 @@ import { Component, OnInit, AfterViewInit, Input, Output, EventEmitter } from '@
 })
 export class ChildComponent implements OnInit, AfterViewInit {
 
-  inputB: string;
+  public inputB: string;
   @Input() childMessage: string;
 
   @Output() messageEvent = new EventEmitter<string>();
