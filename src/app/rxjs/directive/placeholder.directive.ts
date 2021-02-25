@@ -26,12 +26,10 @@ export class PlaceholderDirective implements OnChanges {
       this.viewContainer.clear();
       if (this.appPlaceholder) {
         // this.component = this.viewContainer.createComponent(this.componentFactoryResolver.resolveComponentFactory(this.appPlaceholder)).instance;
-        // debugger
         // Object.assign(this.component.message, changes['initData'] ? (changes['initData'].currentValue || {}) : {});
 
         const factory = this.componentFactoryResolver.resolveComponentFactory(this.appPlaceholder);
         let instance = this.viewContainer.createComponent(factory).instance;
-        debugger
         instance.message = 'abcde';
 
       }

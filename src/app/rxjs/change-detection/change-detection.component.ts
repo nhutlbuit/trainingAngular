@@ -35,7 +35,6 @@ export class ChangeDetectionComponent implements OnInit, AfterViewInit {
    }
 
   onClick() {
-  
     this.input = 'Setted';
     this.cd.checkNoChanges();
   }

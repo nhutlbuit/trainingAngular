@@ -5,7 +5,7 @@
     </div>
 
     <button class="margin-left" mat-raised-button (click)="loadComponent()">{{'LOAD2' | translate }}</button>
-    <ng-container #anchor></ng-container>
+    <ng-container #containerRef></ng-container>
 
     <button class="margin-left" mat-raised-button (click)="loadCardComponent()">{{'LOAD3' | translate }}</button>
     <ng-container *ngIf="cardLazyLoad">

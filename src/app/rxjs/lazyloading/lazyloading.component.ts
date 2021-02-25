@@ -16,7 +16,7 @@ export class LazyLoadingComponent implements OnInit, AfterViewInit {
   myComponent?: Type<any>;
   compHolder?: Type<any>;
   loaded = false;
-  @ViewChild('anchor', { read: ViewContainerRef }) anchor: ViewContainerRef;
+  @ViewChild('containerRef', { read: ViewContainerRef }) containerRef: ViewContainerRef;
   cardLazyLoad?: Promise<Type<any>>;
   typeScriptLazyLoad?: Promise<Type<any>>;
   dataTranfer: string;
@@ -46,16 +46,16 @@ export class LazyLoadingComponent implements OnInit, AfterViewInit {
   async loadComponent() {
     const { CardComponent } = await import('../card/card.component');
     const factory = this.factoryResolver.resolveComponentFactory(CardComponent);
-    this.anchor.clear();
-    const {instance} = this.anchor.createComponent(factory);
+    this.containerRef.clear();
+    const {instance} = this.containerRef.createComponent(factory);
     instance.message = 'abcde';
   }
 
   loadCardDynamicComponent() {
     import('../card/card.component').then(m => {
       const factory = this.factoryResolver.resolveComponentFactory(m.CardComponent);
-      this.anchor.clear();
-      this.anchor.createComponent(factory);
+      this.containerRef.clear();
+      this.containerRef.createComponent(factory);
     });
   }
 
